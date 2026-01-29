@@ -5,12 +5,48 @@ const MIS_PLANES = {
     tech: { id: "tech_dev", flowPlanId: "TU_PLAN_ID_2.5M" }
 };
 
-// 2. FUNCIÓN DE SUSCRIPCIÓN (Versión limpia)
-// Nota: Por ahora solo imprime en consola, la conectaremos a Supabase en el siguiente paso
+// 2. FUNCIÓN DE SUSCRIPCIÓN (Versión Definitiva)
 async function iniciarSuscripcion(planKey) {
     console.log("Iniciando proceso para el plan:", planKey);
-    // Aquí es donde eliminamos el 'prompt' molesto y usaremos el correo del usuario logueado
-    alert("Pronto: Aquí te redirigiremos a Flow automáticamente.");
+
+    // A. Obtenemos el usuario que tiene la sesión abierta en Supabase
+    const { data: { user } } = await _supabase.auth.getUser();
+
+    // B. Si NO hay usuario, le avisamos (UX profesional)
+    if (!user) {
+        alert("Por favor, regístrate o inicia sesión para continuar con la suscripción.");
+        // Opcional: puedes hacer scroll automático al formulario de registro
+        const registroSection = document.getElementById('registro');
+        if (registroSection) lenis.scrollTo(registroSection);
+        return;
+    }
+
+    // C. Si el usuario existe, llamamos a nuestra "Caja Negra" en Vercel
+    try {
+        const plan = MIS_PLANES[planKey];
+
+        const response = await fetch('/api/crear-pago-flow', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                planId: plan.flowPlanId,
+                email: user.email, // <-- El correo sale de Supabase, no se pregunta de nuevo
+                userId: user.id
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.url) {
+            // REDIRECCIÓN MÁGICA: El usuario salta directo a pagar
+            window.location.href = data.url;
+        } else {
+            alert("Error al conectar con la pasarela de pagos.");
+        }
+    } catch (error) {
+        console.error("Error de conexión:", error);
+        alert("Hubo un problema al procesar el pago.");
+    }
 }
 
 // CONFIGURACIÓN DE SUPABASE
