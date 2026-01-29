@@ -1,0 +1,235 @@
+/* About Page Specific Styles */
+
+.hero-section-about {
+    position: relative;
+    width: 100%;
+    height: 472px;
+    overflow: hidden;
+}
+
+.hero-section-about .hero-content {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-bottom: 0;
+}
+
+.hero-title-about {
+    font-size: 96px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.hero-description-about {
+    font-size: 24px;
+    line-height: 32px;
+    text-align: center;
+}
+
+/* About Content Section */
+.about-content-section {
+    background-color: white;
+    padding: 112px 0;
+}
+
+.about-intro {
+    max-width: 768px;
+    text-align: center;
+    margin: 0 auto 80px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    margin-bottom: 80px;
+}
+
+.about-card {
+    background-color: var(--bg-gray);
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.about-card-title {
+    font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+    font-size: 28px;
+    color: var(--text-black);
+    line-height: 1.3;
+}
+
+.about-card-text {
+    font-size: 16px;
+    color: var(--text-black);
+    line-height: 1.5;
+}
+
+/* Experience Section */
+.experience-section {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 112px 0;
+}
+
+.experience-stats {
+    display: flex;
+    justify-content: space-around;
+    gap: 48px;
+    margin-top: 48px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.stat-number {
+    font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+    font-size: 72px;
+    color: var(--primary-blue);
+    line-height: 1;
+    font-weight: bold;
+}
+
+.stat-label {
+    font-size: 18px;
+    color: var(--text-black);
+    line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-section-about {
+        height: 400px;
+    }
+
+    .hero-title-about {
+        font-size: 40px;
+    }
+
+    .hero-description-about {
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    .about-content-section {
+        padding: 64px 0;
+    }
+
+    .about-intro {
+        margin-bottom: 48px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        margin-bottom: 64px;
+    }
+
+    .about-card {
+        padding: 32px 24px;
+    }
+
+    .about-card-title {
+        font-size: 24px;
+    }
+
+    .experience-stats {
+        flex-direction: column;
+        gap: 32px;
+        margin-top: 32px;
+    }
+
+    .stat-number {
+        font-size: 56px;
+    }
+
+    .stat-label {
+        font-size: 16px;
+    }
+}
+
+/* New Split Section */
+.split-section {
+    width: 100%;
+    background-color: white;
+    padding: 120px 0;
+}
+
+.split-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.split-text-col {
+    flex: 1;
+    background-color: white;
+    padding: 64px 0;
+    /* Standard vertical padding, let container handle horizontal */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    /* Align content to the left */
+    text-align: left;
+    /* Align text lines to the left */
+}
+
+.split-text-col .section-title,
+.split-text-col .section-description {
+    text-align: left;
+    /* Explicitly override the global centering */
+}
+
+/* Removing .text-right as it is no longer needed since everything is centered */
+
+.split-image-col {
+    flex: 1;
+    position: relative;
+    min-height: 400px;
+    /* Minimal height for mobile visibility */
+}
+
+.split-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    /* Ensures it fills the relative container */
+    inset: 0;
+    border-radius: 16px;
+}
+
+/* Desktop styles */
+@media (min-width: 992px) {
+    .split-wrapper {
+        flex-direction: row;
+        align-items: stretch;
+        /* Ensures both columns are equal height */
+    }
+
+    .split-text-col {
+        padding: 80px 64px;
+        width: 100%;
+        /* Allow it to be centered vertically if needed, but width 100% helps centering in flex row too */
+        /* width: 50% was here before, but let's keep it 50% for the split look */
+        width: 50%;
+    }
+
+    .split-image-col {
+        width: 50%;
+        min-height: auto;
+        /* Let flex/stretch handle height */
+    }
+}
