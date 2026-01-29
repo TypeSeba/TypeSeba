@@ -13,6 +13,16 @@ async function iniciarSuscripcion(planKey) {
     alert("Pronto: Aquí te redirigiremos a Flow automáticamente.");
 }
 
+// CONFIGURACIÓN DE SUPABASE
+const supabaseUrl = 'https://hcvyalkfuxrvowbleztr.supabase.co'; // Tu URL
+const supabaseKey = 'sb_publishable_ywnkSoUqEBPAXYzxyMMuog_Uc28avyb';         // Tu llave anon (public)
+
+// Esta línea crea la conexión oficial
+const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+// NOTA DE APRENDIZAJE: Usamos '_supabase' (con un guion bajo o un nombre claro) 
+// para llamar a todas las funciones de base de datos a partir de ahora.
+
 // --- TODO LO SIGUIENTE ES TU LÓGICA DE DISEÑO Y ANIMACIÓN (NO TOCAR) ---
 
 // Initialize Lenis
