@@ -19,48 +19,63 @@ const MIS_PLANES = {
 };
 
 // 2. FUNCIÓN DE SUSCRIPCIÓN (Versión Definitiva)
-async function iniciarSuscripcion(planKey) {
-    console.log("Iniciando proceso para el plan:", planKey);
+let planSeleccionado = ''; // Nota: Variable global para saber qué plan eligió
 
-    // A. Obtenemos el usuario que tiene la sesión abierta en Supabase
-    const { data: { user } } = await _supabase.auth.getUser();
-
-    // B. Si NO hay usuario, le avisamos (UX profesional)
-    if (!user) {
-        alert("Por favor, regístrate o inicia sesión para continuar con la suscripción.");
-        // Opcional: puedes hacer scroll automático al formulario de registro
-        const registroSection = document.getElementById('registro');
-        if (registroSection) lenis.scrollTo(registroSection);
-        return;
-    }
-
-    // C. Si el usuario existe, llamamos a nuestra "Caja Negra" en Vercel
-    try {
-        const plan = MIS_PLANES[planKey];
-
-        const response = await fetch('/api/crear-pago-flow', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                planId: plan.flowPlanId,
-                email: user.email, // <-- El correo sale de Supabase, no se pregunta de nuevo
-                userId: user.id
-            })
-        });
-
-        const data = await response.json();
-
-        if (data.url) {
-            // REDIRECCIÓN MÁGICA: El usuario salta directo a pagar
-            window.location.href = data.url;
-        } else {
-            alert("Error al conectar con la pasarela de pagos.");
-        }
-    } catch (error) {
-        console.error("Error de conexión:", error);
-        alert("Hubo un problema al procesar el pago.");
-    }
+function iniciarSuscripcion(planKey) {
+    planSeleccionado = planKey; // Guardamos el plan
+    document.getElementById('modal-contacto').style.display = 'flex';
+    lenis.stop(); // Nota: Detenemos el scroll de la web mientras el modal está abierto
 }
+
+// Lógica del formulario dentro del Pop-up
+document.getElementById('form-prospecto')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const datos = {
+        nombre: document.getElementById('p-nombre').value,
+        empresa: document.getElementById('p-empresa').value,
+        tipo_cliente: document.getElementById('p-tipo').value,
+        email: document.getElementById('p-email').value,
+        telefono: document.getElementById('p-whatsapp').value,
+        plan_interes: planSeleccionado
+    };
+
+    // 1. Guardamos en la tabla 'perfiles' de Supabase
+    const { error } = await _supabase.from('perfiles').insert([datos]);
+
+    if (!error) {
+        // 2. Cambiamos la vista del modal
+        document.getElementById('paso-formulario').style.display = 'none';
+        document.getElementById('paso-gracias').style.display = 'block';
+    } else {
+        alert("Hubo un error al guardar tus datos. Intenta nuevamente.");
+    }
+});
+
+// Botón "Pagar ahora" dentro del mensaje de gracias
+document.getElementById('btn-pagar-ahora')?.addEventListener('click', async () => {
+    const email = document.getElementById('p-email').value;
+    const plan = MIS_PLANES[planSeleccionado];
+
+    // Llamamos a tu API de Flow
+    const response = await fetch('/api/crear-pago-flow', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            planId: plan.flowPlanId,
+            email: email
+        })
+    });
+
+    const data = await response.json();
+    if (data.url) window.location.href = data.url;
+});
+
+// Cerrar modal
+document.getElementById('close-modal')?.addEventListener('click', () => {
+    document.getElementById('modal-contacto').style.display = 'none';
+    lenis.start(); // Nota: Devolvemos el scroll al usuario
+});
 
 
 
