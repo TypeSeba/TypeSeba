@@ -13,9 +13,9 @@ if (window.supabase) {
 
 // 1. CONFIGURACIÓN DE PLANES (Mantenemos los IDs para usarlos luego con Supabase)
 const MIS_PLANES = {
-    growth: { id: "growth_content", flowPlanId: "TU_PLAN_ID_750" },
-    product: { id: "product_build", flowPlanId: "TU_PLAN_ID_1.5M" },
-    tech: { id: "tech_dev", flowPlanId: "TU_PLAN_ID_2.5M" }
+    growth_content: { id: "growth_content", flowPlanId: "TU_PLAN_ID_750" },
+    product_build: { id: "product_build", flowPlanId: "TU_PLAN_ID_1.5M" },
+    tech_dev: { id: "tech_dev", flowPlanId: "TU_PLAN_ID_2.5M" }
 };
 
 // 2. FUNCIÓN DE SUSCRIPCIÓN (Versión Definitiva)
@@ -58,23 +58,33 @@ document.getElementById('form-prospecto')?.addEventListener('submit', async (e) 
     }
 });
 
-// Botón "Pagar ahora" (CORREGIDO)
+// Botón "Pagar ahora" (Versión corregida con validación de plan)
 document.getElementById('btn-pagar-ahora')?.addEventListener('click', async () => {
-    if (!emailTemporal) {
-        alert("No encontramos tu correo. Por favor reintenta.");
+
+    // 1. Verificamos que tengamos el email y el plan
+    if (!emailTemporal || !planSeleccionado) {
+        alert("Faltan datos para procesar el pago. Por favor, intenta de nuevo.");
         return;
     }
 
+    // 2. Buscamos el plan en tu lista de MIS_PLANES
     const plan = MIS_PLANES[planSeleccionado];
+
+    // AQUÍ ESTABA EL ERROR: Si 'plan' no existe, el código se rompe.
+    if (!plan) {
+        console.error("El plan seleccionado no existe en MIS_PLANES:", planSeleccionado);
+        alert("Error: El plan seleccionado no es válido.");
+        return;
+    }
 
     try {
         const response = await fetch('/api/crear-pago-flow', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                planId: plan.flowPlanId,
-                email: emailTemporal, // Ahora sí tiene el valor correcto
-                userId: "prospecto_" + Date.now() // Generamos un ID temporal
+                planId: plan.flowPlanId, // Ahora sí estará definido
+                email: emailTemporal,
+                userId: "prospecto_" + Date.now()
             })
         });
 
@@ -82,11 +92,11 @@ document.getElementById('btn-pagar-ahora')?.addEventListener('click', async () =
         if (data.url) {
             window.location.href = data.url;
         } else {
-            console.error("Error API:", data);
-            alert("Error al generar el link de pago.");
+            console.error("Error de la API de Flow:", data);
+            alert("No se pudo generar el link de pago.");
         }
     } catch (err) {
-        console.error("Error fetch:", err);
+        console.error("Error en la llamada a la API:", err);
     }
 });
 
