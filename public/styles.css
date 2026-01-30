@@ -1124,6 +1124,22 @@ button,
     text-align: center;
 }
 
+.input-row {
+    display: flex;
+    gap: 10px;
+}
+
+.input-row input {
+    flex: 1;
+}
+
+@media (max-width: 480px) {
+    .input-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
 
 /* --- Responsive --- */
 @media (max-width: 768px) {

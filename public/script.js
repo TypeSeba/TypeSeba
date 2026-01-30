@@ -20,19 +20,25 @@ const MIS_PLANES = {
 
 // 2. FUNCIÓN DE SUSCRIPCIÓN (Versión Definitiva)
 let planSeleccionado = ''; // Nota: Variable global para saber qué plan eligió
+let emailTemporal = '';
 
 function iniciarSuscripcion(planKey) {
     planSeleccionado = planKey; // Guardamos el plan
     document.getElementById('modal-contacto').style.display = 'flex';
-    lenis.stop(); // Nota: Detenemos el scroll de la web mientras el modal está abierto
+    if (window.lenis) lenis.stop();
+    // lenis.stop(); // Nota: Detenemos el scroll de la web mientras el modal está abierto (si no funciona, activar esta linea y eliminar la de arriba)
 }
 
 // Lógica del formulario dentro del Pop-up
 document.getElementById('form-prospecto')?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    // Guardamos el email en la variable global para que el botón de pago lo use
+    emailTemporal = document.getElementById('p-email').value;
+
     const datos = {
         nombre: document.getElementById('p-nombre').value,
+        apellido: document.getElementById('p-apellido').value,
         empresa: document.getElementById('p-empresa').value,
         tipo_cliente: document.getElementById('p-tipo').value,
         email: document.getElementById('p-email').value,
@@ -52,23 +58,36 @@ document.getElementById('form-prospecto')?.addEventListener('submit', async (e) 
     }
 });
 
-// Botón "Pagar ahora" dentro del mensaje de gracias
+// Botón "Pagar ahora" (CORREGIDO)
 document.getElementById('btn-pagar-ahora')?.addEventListener('click', async () => {
-    const email = document.getElementById('p-email').value;
+    if (!emailTemporal) {
+        alert("No encontramos tu correo. Por favor reintenta.");
+        return;
+    }
+
     const plan = MIS_PLANES[planSeleccionado];
 
-    // Llamamos a tu API de Flow
-    const response = await fetch('/api/crear-pago-flow', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            planId: plan.flowPlanId,
-            email: email
-        })
-    });
+    try {
+        const response = await fetch('/api/crear-pago-flow', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                planId: plan.flowPlanId,
+                email: emailTemporal, // Ahora sí tiene el valor correcto
+                userId: "prospecto_" + Date.now() // Generamos un ID temporal
+            })
+        });
 
-    const data = await response.json();
-    if (data.url) window.location.href = data.url;
+        const data = await response.json();
+        if (data.url) {
+            window.location.href = data.url;
+        } else {
+            console.error("Error API:", data);
+            alert("Error al generar el link de pago.");
+        }
+    } catch (err) {
+        console.error("Error fetch:", err);
+    }
 });
 
 // Cerrar modal
