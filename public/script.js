@@ -1,3 +1,16 @@
+// CONFIGURACIÓN DE SUPABASE
+const supabaseUrl = 'https://hcvyalkfuxrvowbleztr.supabase.co'; // Tu URL
+const supabaseKey = 'sb_publishable_ywnkSoUqEBPAXYzxyMMuog_Uc28avyb';         // Tu llave anon (public)
+
+// Usamos una pequeña validación por si la librería tarda en cargar
+let _supabase;
+if (window.supabase) {
+    _supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+} else {
+    console.error("La librería de Supabase no ha cargado correctamente.");
+}
+
+
 // 1. CONFIGURACIÓN DE PLANES (Mantenemos los IDs para usarlos luego con Supabase)
 const MIS_PLANES = {
     growth: { id: "growth_content", flowPlanId: "TU_PLAN_ID_750" },
@@ -49,15 +62,7 @@ async function iniciarSuscripcion(planKey) {
     }
 }
 
-// CONFIGURACIÓN DE SUPABASE
-const supabaseUrl = 'https://hcvyalkfuxrvowbleztr.supabase.co'; // Tu URL
-const supabaseKey = 'sb_publishable_ywnkSoUqEBPAXYzxyMMuog_Uc28avyb';         // Tu llave anon (public)
 
-// Esta línea crea la conexión oficial
-const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
-// NOTA DE APRENDIZAJE: Usamos '_supabase' (con un guion bajo o un nombre claro) 
-// para llamar a todas las funciones de base de datos a partir de ahora.
 
 // --- TODO LO SIGUIENTE ES TU LÓGICA DE DISEÑO Y ANIMACIÓN (NO TOCAR) ---
 
