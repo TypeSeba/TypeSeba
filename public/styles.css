@@ -324,10 +324,7 @@ button,
 
 /* --- Hero Section --- */
 .hero-section {
-    /* position: relative;
-    width: 100%; */
     height: 962px;
-    /* overflow: hidden; */
 }
 
 .hero-background video,
@@ -385,6 +382,7 @@ button,
 
 .nav-link:hover {
     opacity: 1;
+    color: var(--color-accent) !important;
 }
 
 .arrow-down {
@@ -399,12 +397,16 @@ button,
 
 /* Navbar Dark Mode */
 .navbar.navbar-dark .navbar-content {
-    background: rgba(255, 255, 255, 0.9);
-    border-color: rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .navbar.navbar-dark .nav-link {
     color: var(--color-dark) !important;
+}
+
+.navbar.navbar-dark .nav-link:hover {
+    color: var(--color-accent) !important;
 }
 
 .navbar.navbar-dark .logo img {
@@ -422,6 +424,15 @@ button,
 
 .navbar.navbar-dark .mobile-menu-btn {
     color: var(--color-dark) !important;
+}
+
+.navbar.navbar-dark .mobile-menu {
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.navbar.navbar-dark .mobile-link {
+    color: var(--color-dark);
 }
 
 /* Mobile Menu */
@@ -815,8 +826,10 @@ button,
     gap: 32px;
 }
 
-.pricing-content-wrap {
-    align-content: space-between;
+.pricing-content-wrapp {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .pricing-card-featured {
@@ -1056,58 +1069,77 @@ button,
 }
 
 
-/* Estilos para el Modal de Contacto */
+/* Estilos para el Modal de Contacto - LIMPIOS */
+
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    /* Fondo oscuro */
-    display: flex;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    /* Cambiado a none por defecto para que el JS lo controle */
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    /* Siempre por encima de todo */
+    backdrop-filter: blur(5px);
+    /* Toque extra de diseño */
 }
 
-.modal-content {
-    background: #111;
-    /* Color oscuro como tu web */
-    padding: 40px;
-    border-radius: 15px;
-    max-width: 500px;
-    width: 90%;
-    position: relative;
-    border: 1px solid #333;
+/* Ajuste de los textos del modal */
+.modal-content h2 {
+    color: #111;
+    margin-bottom: 10px;
+    line-height: 80px;
+    margin: 28px 0px;
 }
 
+.modal-content p {
+    color: rgba(12, 12, 12, 0.60);
+    margin: 12px 0px;
+}
+
+/* Estilo de los Inputs dentro del modal */
+#form-prospecto input,
+#form-prospecto select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: #F9F9F9;
+    /* Fondo gris muy clarito para los campos */
+    border: 1px solid #DDD;
+    /* Borde suave */
+    color: rgba(12, 12, 12, 0.60);
+    /* Texto negro al escribir */
+    border-radius: 5px;
+}
+
+/* Cambia el borde del input cuando el usuario hace clic para escribir */
+#form-prospecto input:focus,
+#form-prospecto select:focus {
+    outline: none;
+    border-color: #D9482A;
+    /* El borde se vuelve naranjo al escribir */
+}
+
+/* Ajuste del botón de cierre (la X) */
 .close-btn {
     position: absolute;
     top: 15px;
     right: 20px;
     background: none;
     border: none;
-    color: white;
+    color: #D9482A;
+    /* X en color naranjo */
     font-size: 30px;
     cursor: pointer;
 }
 
-#form-prospecto input,
-#form-prospecto select {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    background: #222;
-    border: 1px solid #444;
+/* El botón de enviar ahora podría ser naranjo para combinar */
+.btn-modal-enviar {
+    background: #D9482A;
     color: white;
-    border-radius: 5px;
-}
-
-.btn-primary {
-    background: white;
-    color: black;
     padding: 15px 25px;
     border: none;
     border-radius: 5px;
@@ -1115,14 +1147,31 @@ button,
     font-weight: bold;
     width: 100%;
     margin-top: 10px;
+    transition: background 0.3s;
 }
 
-.nota-pago {
-    font-size: 0.8rem;
-    color: #888;
-    margin-top: 15px;
-    text-align: center;
+.btn-modal-enviar:hover {
+    background: #b33a22;
+    /* Un naranjo más oscuro al pasar el mouse */
 }
+
+.modal-content {
+    background: #FFFFFF;
+    /* Fondo blanco */
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+}
+
+.btn-modal-enviar:hover {
+    transform: scale(1.02);
+}
+
+/* * {
+    box-sizing: border-box;
+} */
 
 .input-row {
     display: flex;
@@ -1131,6 +1180,13 @@ button,
 
 .input-row input {
     flex: 1;
+}
+
+.nota-pago {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 15px;
+    text-align: center;
 }
 
 @media (max-width: 480px) {
@@ -1143,8 +1199,33 @@ button,
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
+
+    html,
+    body {
+        width: 100%;
+        overflow-x: hidden;
+        position: relative;
+    }
+
     .container {
         padding: 0 20px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .navbar {
+        padding: 0 20px;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .navbar-content {
+        max-width: none;
+        width: 100%;
     }
 
     .hero-title {
@@ -1152,27 +1233,89 @@ button,
     }
 
     .hero-section {
-        height: 812px;
+        height: auto;
+        min-height: 100svh;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-content {
+        height: auto;
+        padding: 0 20px;
+    }
+
+    .hero-text {
+        gap: 24px;
     }
 
     .hero-buttons {
         flex-direction: column;
         width: 100%;
+        gap: 12px;
     }
 
     .studio-cards,
     .process-steps,
     .pricing-cards,
-    .portfolio-grid,
     .services-grid {
+        display: flex;
         flex-direction: column;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .pricing-card-featured {
+        transform: none !important;
+        margin: 10px 0;
+    }
+
+    .services-section {
+        height: auto !important;
+        padding: 60px 0;
+    }
+
+    .portfolio-grid {
+        column-count: 1;
+        width: 100%;
     }
 
     .studio-card,
     .process-card,
     .portfolio-card {
+        width: 100%;
         height: auto;
         min-height: 300px;
+        position: relative;
+    }
+
+    .portfolio-content {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .complex-title {
+        font-size: 32px;
+    }
+
+    .cta-title {
+        font-size: 32px;
+    }
+
+    .complex-content {
+        align-items: center;
+        text-align: center;
+    }
+
+    .complex-content .btn-primary,
+    .pricing-section .btn-plan-primary {
+        width: 100%;
     }
 
     .desktop-menu,
@@ -1185,8 +1328,18 @@ button,
     }
 
     .cta-section {
-        flex-direction: column;
         height: auto;
+    }
+
+    .cta-section .container {
+        flex-direction: column !important;
+        height: auto !important;
+        padding: 0 20px !important;
+    }
+
+    .cta-card {
+        width: 100%;
+        min-height: 240px;
     }
 
     .footer {
@@ -1203,6 +1356,16 @@ button,
 
     .section-title {
         font-size: 40px;
+    }
+
+    .portfolio-card {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .section-header {
+        max-width: 100%;
+        margin-bottom: 40px;
     }
 }
 

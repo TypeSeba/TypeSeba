@@ -29,6 +29,12 @@ function iniciarSuscripcion(planKey) {
     // lenis.stop(); // Nota: Detenemos el scroll de la web mientras el modal está abierto (si no funciona, activar esta linea y eliminar la de arriba)
 }
 
+// Asegúrate de tener este evento para cerrar el modal
+document.getElementById('close-modal')?.addEventListener('click', () => {
+    document.getElementById('modal-contacto').style.display = 'none';
+    if (window.lenis) lenis.start();
+});
+
 // Lógica del formulario dentro del Pop-up
 document.getElementById('form-prospecto')?.addEventListener('submit', async (e) => {
     e.preventDefault();
