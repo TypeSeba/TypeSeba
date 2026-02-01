@@ -1081,7 +1081,8 @@ button,
     display: none;
     /* Cambiado a none por defecto para que el JS lo controle */
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    padding: 20px 0;
     z-index: 9999;
     backdrop-filter: blur(5px);
     /* Toque extra de diseño */
@@ -1091,8 +1092,9 @@ button,
 .modal-content h2 {
     color: #111;
     margin-bottom: 10px;
-    line-height: 80px;
+    line-height: 1.2;
     margin: 28px 0px;
+    font-size: 40px;
 }
 
 .modal-content p {
@@ -1158,11 +1160,13 @@ button,
 .modal-content {
     background: #FFFFFF;
     /* Fondo blanco */
-    padding: 40px;
+    padding: 20px;
     border-radius: 15px;
     max-width: 500px;
     width: 90%;
     position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .btn-modal-enviar:hover {
