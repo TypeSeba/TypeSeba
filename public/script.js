@@ -130,13 +130,28 @@ function raf(time) {
 requestAnimationFrame(raf);
 
 // Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) lenis.scrollTo(target);
+function initializeSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // Remover event listener previo para evitar duplicados si se llama de nuevo
+        anchor.removeEventListener('click', smoothScrollHandler);
+        anchor.addEventListener('click', smoothScrollHandler);
     });
-});
+}
+
+function smoothScrollHandler(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+        if (window.lenis) {
+            lenis.scrollTo(target);
+        } else {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+}
+
+// Inicializar al cargar (por si hay anchors estáticos)
+initializeSmoothScroll();
 
 // Intersection Observer (Animaciones al hacer scroll)
 const observerOptions = { threshold: 0.3, rootMargin: '0px 0px -100px 0px' };
@@ -206,6 +221,8 @@ async function loadComponents() {
                 navbarPlaceholder.innerHTML = await response.text();
                 initializeMobileMenu();
                 updateNavbarColor();
+                // Inicializar smooth scroll para los enlaces recién cargados en el navbar
+                initializeSmoothScroll();
             }
         }
     } catch (error) {
@@ -217,7 +234,49 @@ async function loadComponents() {
 document.addEventListener('DOMContentLoaded', () => {
     initializeAnimations();
     loadComponents();
+    if (document.querySelector('.typewriter-text')) {
+        typingEffect();
+    }
 });
+
+// --- Typewriter Effect ---
+const words = ["Growth", "Crecimiento", "Partner"];
+let typeIndex = 0;
+let typeTimer;
+
+function typingEffect() {
+    let word = words[typeIndex].split("");
+    var loopTyping = function() {
+        if (word.length > 0) {
+            document.querySelector('.typewriter-text').innerHTML += word.shift();
+        } else {
+            deletingEffect();
+            return false;
+        };
+        typeTimer = setTimeout(loopTyping, 120);
+    };
+    loopTyping();
+};
+
+function deletingEffect() {
+    let word = words[typeIndex].split("");
+    var loopDeleting = function() {
+        if (word.length > 0) {
+            word.pop();
+            document.querySelector('.typewriter-text').innerHTML = word.join("");
+        } else {
+            if (words.length > (typeIndex + 1)) {
+                typeIndex++;
+            } else {
+                typeIndex = 0;
+            };
+            typingEffect();
+            return false;
+        };
+        typeTimer = setTimeout(loopDeleting, 60);
+    };
+    setTimeout(loopDeleting, 2000); // Espera 2s antes de borrar
+};
 
 window.addEventListener('scroll', updateNavbarColor);
 window.addEventListener('resize', updateNavbarColor);

@@ -1,60 +1,125 @@
 /* ==========================================================================
-   1. DESIGN TOKENS (Variables Globales)
+   1. DESIGN TOKENS — Sincronizados desde Figma (Type_Seba 2026)
+   Fuente: https://figma.com/design/LGlZ6Nf5VsK6fa0w9FWhyr/Type_Seba-2026
    ========================================================================== */
 :root {
-    /* 🎨 Paleta de Colores
-       Uso nombres semánticos para facilitar cambios futuros (temas).
-    */
-    --color-accent: #D9482A;
-    /* Naranja/Rojo de acción */
-    --color-dark: #000000;
-    /* Negro puro */
-    --color-light: #ffffff;
-    /* Blanco puro */
+
+    /* ─── 🎨 COLORES FIGMA (nombres originales) ─────────────────────────── */
+    --white: #ffffff;
+    --white-10: rgba(255, 255, 255, 0.10);
+    --white-30: rgba(255, 255, 255, 0.30);
+
+    --orange-500: #e8320c;
+    /* Brand Primary */
+    --orange-100: #f4baae;
+    /* Brand Secondary */
+
+    --text-title: #171515;
+    /* Texto oscuro principal */
+    --text-body: #979292;
+    /* Texto secundario / gris */
+
+    --grey-600: #979292;
+    --surface-secondary: #fff5f5;
+    /* Fondo rosado suave */
+
+    --brand-primary: #e8320c;
+    --brand-secondary: #f4baae;
+
+    /* Color Scheme */
+    --color-scheme-1-bg: #ffffff;
+
+    /* Neutros */
+    --color-neutral-lightest: #eeeeee;
+    --color-neutral-darkest: #000000;
+
+    /* ─── 🅰️ TIPOGRAFÍA FIGMA ─────────────────────────────────────────── */
+    /* Familias */
+    --font-display: 'Neue Haas Grotesk Display Pro', sans-serif;
+    --font-body-fam: 'Neue Haas Grotesk Display Pro', sans-serif;
+    --font-ui: 'Roboto', sans-serif;
+    --font-mono: 'Roboto Mono', monospace;
+
+    /* Alias legacy (compatibilidad con clases existentes) */
+    --font-body: var(--font-display);
+
+    /* Tamaños (extraídos de variables Figma) */
+    --font-size-h1: 96px;
+    --font-size-h2: 72px;
+    --font-size-h3: 32px;
+    --font-size-h4: 28px;
+    --font-size-subheading: 24px;
+    /* <--- NUEVO TOKEN AÑADIDO */
+    --font-size-price: 60px;
+    --body-base: 20px;
+    --body-small: 16px;
+    --button: 16px;
+
+    /* Text Sizes */
+    --text-sizes-text-small: 14px;
+    --text-sizes-text-regular: 16px;
+
+    /* Alias legacy */
+    --text-h1: var(--font-size-h1);
+    --text-h2: 88px;
+    /* visual original del sitio */
+    --text-h3: var(--font-size-h3);
+    --text-body-lg: 24px;
+    --text-sm: var(--text-sizes-text-small);
+    --text-xs: 12px;
+
+    /* ─── 📐 ESPACIADO FIGMA ───────────────────────────────────────────── */
+    --spacing-xs: 4px;
+    --spacing-sm: 16px;
+    --spacing-md: 32px;
+    --spacing-lg: 48px;
+    --spacing-xl: 80px;
+    --spacing-2xl: 128px;
+
+    --container-padding: 64px;
+    --page-padding-global: var(--container-padding);
+    --section-padding-medium: var(--spacing-xl);
+
+    /* ─── 🔲 RADIOS FIGMA ──────────────────────────────────────────────── */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 24px;
+    --radius-xl: 40px;
+    --radius-pill: 100px;
+
+    /* Alias legacy (Para no romper nada) */
+    --border-radius-sm: var(--radius-sm);
+    --border-radius-lg: var(--radius-lg);
+    --space-sm: var(--spacing-sm);
+    --space-md: var(--spacing-md);
+    --space-lg: var(--spacing-lg);
+    --space-xl: var(--spacing-xl);
+    --space-2xl: var(--spacing-2xl);
+
+    /* ─── 📏 ANCHOS MÁXIMOS FIGMA ──────────────────────────────────────── */
+    --max-width-large: 768px;
+    --max-width-medium: 560px;
+    --container-large: 1280px;
+
+    /* Alias legacy */
+    --container-width: var(--container-large);
+
+    /* ─── 🖊️ STROKE / BORDES ───────────────────────────────────────────── */
+    --stroke: #dedede;
+    --stroke-divider-width: 1px;
+    --stroke-border-width: 1px;
+
+    /* ─── 🎨 ALIASES SEMÁNTICOS (compatibilidad con clases existentes) ─── */
+    --color-accent: var(--brand-primary);
+    --color-dark: var(--color-neutral-darkest);
+    --color-light: var(--white);
     --color-gray-bg: #f5f5f5;
-    /* Fondo gris claro */
     --color-gray-border: rgba(0, 0, 0, 0.2);
     --color-gray-text: rgba(12, 12, 12, 0.60);
 
-    /* Variables funcionales */
-    --color-text-main: var(--color-dark);
-    --color-text-muted: var(--color-gray-text);
-    --color-text-inverse: var(--color-light);
-
-    /* 🅰️ Tipografía */
-    --font-display: 'Neue Haas Grotesk Display Pro', sans-serif;
-    /* Títulos */
-    --font-body: 'Neue Haas Grotesk Display Pro', sans-serif;
-    /* Textos generales */
-    --font-ui: 'Roboto', sans-serif;
-    /* Botones, Enlaces, UI */
-    --font-mono: 'Roboto Mono', monospace;
-    /* Detalles técnicos */
-
-    /* 📏 Tamaños de Fuente (Escala Modular) */
-    --text-h1: 96px;
-    /* Hero Title */
-    --text-h2: 88px;
-    /* Section Title */
-    --text-h3: 32px;
-    /* Card Title */
-    --text-body-lg: 24px;
-    --text-body: 16px;
-    --text-sm: 14px;
-    --text-xs: 12px;
-
-    /* 📐 Espaciado (Sistema de 8px) */
-    --space-xs: 8px;
-    --space-sm: 16px;
-    --space-md: 24px;
-    --space-lg: 32px;
-    --space-xl: 64px;
-    --space-2xl: 112px;
-
-    /* 🧱 Layout Utils */
-    --container-width: 1280px;
-    --border-radius-sm: 4px;
-    --border-radius-lg: 16px;
+    --color-text-main: var(--text-title);
+    --color-text-muted: var(--text-body);
+    --color-text-inverse: var(--white);
 }
 
 /* ==========================================================================
@@ -78,7 +143,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Base Typography Component */
+/* Base Typography — Figma tokens */
 h1,
 h2,
 h3,
@@ -86,25 +151,34 @@ h4,
 h5,
 h6 {
     font-family: var(--font-display);
-    font-weight: 700;
     line-height: 1.1;
 }
 
 h1 {
-    font-size: var(--text-h1);
+    font-size: var(--font-size-h1);
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0;
 }
 
 h2 {
-    font-size: var(--text-h2);
+    font-size: var(--font-size-h2);
+    font-weight: 500;
+    line-height: 1.1;
+    text-transform: uppercase;
 }
 
 h3 {
-    font-size: var(--text-h3);
-    color: #000000;
+    font-size: var(--font-size-h3);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-neutral-darkest);
 }
 
 p {
-    font-size: var(--text-body);
+    font-size: var(--body-small);
+    line-height: 1.5;
 }
 
 /* Links & UI Typography Override */
@@ -122,14 +196,14 @@ button,
    3. LAYOUT UTILITIES & HELPERS
    ========================================================================== */
 .container {
-    max-width: var(--container-width);
+    max-width: var(--container-large);
     margin: 0 auto;
-    padding: 0 var(--space-xl);
+    padding: 0 var(--container-padding);
     width: 100%;
 }
 
 .section {
-    padding: var(--space-2xl) 0;
+    padding: var(--spacing-2xl) 0;
     width: 100%;
 }
 
@@ -157,7 +231,7 @@ button,
 }
 
 /* ==========================================================================
-   4. COMPONENT: BUTTONS
+   4. COMPONENT: BUTTONS — Figma tokens
    ========================================================================== */
 .btn,
 .btn-primary,
@@ -169,19 +243,26 @@ button,
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     padding: 12px 24px;
-    font-size: var(--text-sm);
-    border-radius: var(--border-radius-sm);
+    font-size: var(--button);
+    /* 16px — Figma */
+    border-radius: var(--radius-sm);
+    /* 8px — Figma */
     transition: all 0.3s ease;
     border: 1px solid transparent;
     font-family: var(--font-mono) !important;
-    font-weight: 500;
+    font-weight: 700;
+    line-height: 1.5;
+    cursor: pointer;
+    white-space: nowrap;
 }
 
-/* Primary: Fondo Blanco (Hero) o Negro (General) */
+/* Primary: fondo blanco — Figma */
 .btn-primary {
-    background-color: var(--color-light);
-    color: var(--color-dark);
+    background-color: var(--white);
+    color: var(--text-title);
+    border-color: var(--white);
 }
 
 .btn-primary:hover {
@@ -189,31 +270,30 @@ button,
     transform: translateY(-2px);
 }
 
-/* Secondary: Outline (ej. borde blanco) */
+/* Secondary: outline blanco — Figma */
 .btn-secondary {
-    background-color: transparent;
-    border-color: var(--color-light);
-    color: var(--color-light);
+    background-color: var(--white-10);
+    border-color: var(--white);
+    color: var(--white);
 }
 
 .btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Accent: Acciones destacadas (Conversemos, Plan) */
+/* Accent: brand-primary — Figma */
 .btn-conversemos,
 .btn-plan-primary {
-    background-color: var(--color-accent);
-    /* Puede ser blanco o accent según contexto, mantenemos legacy override */
-    color: var(--color-light);
-    border-color: var(--color-accent);
+    background-color: var(--brand-primary);
+    color: var(--white);
+    border-color: var(--brand-primary);
 }
 
-/* Revert Conversemos to white style for Navbar as per original design */
+/* Navbar btn override — Figma: white bg, dark text */
 .navbar .btn-conversemos {
-    background-color: var(--color-light);
-    color: var(--color-dark) !important;
-    border-color: var(--color-light);
+    background-color: var(--white);
+    color: var(--text-title) !important;
+    border-color: var(--white);
 }
 
 .navbar .btn-conversemos:hover {
@@ -221,14 +301,14 @@ button,
 }
 
 .btn-plan-secondary {
-    background-color: var(--color-light);
-    color: var(--color-dark);
-    border: 1px solid var(--color-dark);
+    background-color: var(--white);
+    color: var(--text-title);
+    border: 1px solid var(--text-title);
 }
 
 .btn-cotizar {
-    background-color: var(--color-light);
-    color: var(--color-dark);
+    background-color: var(--white);
+    color: var(--text-title);
 }
 
 /* ==========================================================================
@@ -337,13 +417,15 @@ button,
     z-index: 0;
 }
 
-/* --- Navbar --- */
+/* --- Navbar — Figma tokens --- */
 .navbar {
     position: fixed;
-    top: 20px;
+    top: var(--spacing-xs);
+    /* 4px — Figma */
     width: 100%;
     display: flex;
     justify-content: center;
+    padding: 0 var(--container-padding);
     z-index: 1000;
 }
 
@@ -352,13 +434,18 @@ button,
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    max-width: 1152px;
-    padding: 12px 24px;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--border-radius-lg);
+    max-width: var(--container-large);
+    height: 72px;
+    /* Figma: h-[72px] */
+    padding: 0 var(--spacing-sm);
+    background: var(--white-10);
+    /* rgba(255,255,255,0.1) — Figma */
+    backdrop-filter: blur(7.5px);
+    -webkit-backdrop-filter: blur(7.5px);
+    border: 0.5px solid var(--white-30);
+    /* rgba(255,255,255,0.3) — Figma */
+    border-radius: var(--radius-sm);
+    /* 8px — Figma */
 }
 
 .logo img {
@@ -368,21 +455,24 @@ button,
 
 .desktop-menu {
     display: flex;
-    gap: var(--space-lg);
+    gap: 32px;
+    align-items: center;
 }
 
 .nav-link {
     font-family: var(--font-mono);
-    color: var(--color-light);
-    font-size: 14px;
-    letter-spacing: 0.5px;
+    font-weight: 700;
+    color: var(--white);
+    font-size: var(--button);
+    /* 16px */
+    letter-spacing: 0;
     opacity: 0.9;
     transition: opacity 0.3s;
 }
 
 .nav-link:hover {
     opacity: 1;
-    color: var(--color-accent) !important;
+    color: var(--orange-100) !important;
 }
 
 .arrow-down {
@@ -479,74 +569,117 @@ button,
     align-items: center;
     justify-content: center;
     height: 100%;
-    padding: 0 var(--space-xl);
+    padding: 0 var(--container-padding);
 }
 
 .hero-text {
     display: flex;
     flex-direction: column;
-    gap: var(--space-lg);
+    gap: var(--spacing-md);
+    /* 32px — Figma */
     align-items: center;
     text-align: center;
-    color: var(--color-light);
-    max-width: 1280px;
+    color: var(--white);
+    max-width: var(--container-large);
+    width: 100%;
 }
 
 .hero-title {
     line-height: 1;
     text-transform: uppercase;
+    font-size: var(--font-size-h1);
+    /* 96px */
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--white);
 }
 
 .hero-description {
-    font-size: 24px;
-    line-height: 32px;
-    font-weight: 300;
+    font-size: var(--font-size-subheading);
+    /* Aplicando el nuevo token */
+    font-family: var(--font-display);
+    font-weight: 500;
+    color: var(--white);
+    line-height: normal;
+    width: 100%;
 }
 
 .hero-buttons {
     display: flex;
-    gap: var(--space-lg);
-    margin-top: var(--space-lg);
+    gap: var(--spacing-md);
+    /* 32px — Figma */
 }
 
-/* --- Process Section --- */
+/* --- Typewriter Effect --- */
+.typewriter-cursor {
+    display: inline-block;
+    color: var(--brand-primary);
+    animation: blink 1s step-end infinite;
+    font-weight: 400;
+    margin-left: 4px;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* --- Process Section — Figma tokens --- */
 .process-section {
     position: relative;
     background-image: url('img/abstract-background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: var(--space-2xl) 0;
+    padding: var(--spacing-2xl) 0;
 }
 
 .process-steps {
     display: flex;
-    gap: var(--space-lg);
+    gap: var(--spacing-md);
+    /* 32px */
     flex-wrap: wrap;
 }
 
 .process-card {
     flex: 1;
     min-width: 300px;
-    background-color: var(--color-light);
-    border-radius: var(--border-radius-lg);
-    padding: 16px;
+    background-color: var(--surface-secondary);
+    /* #fff5f5 */
+    border-radius: var(--radius-md);
+    /* 24px */
+    padding: var(--spacing-sm);
+    /* 16px */
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
-    border: 1px solid var(--color-gray-border);
+    gap: var(--spacing-md);
+    border: none;
+    overflow: hidden;
 }
 
 .process-card-image {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: var(--radius-md);
 }
 
 .process-card-title {
     font-size: 24px;
     font-weight: 500;
+}
+
+.process-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
 }
 
 .process-card-description {
@@ -556,35 +689,54 @@ button,
 
 /* --- Studio Cards Section --- */
 .studio-cards-section {
-    background-color: var(--color-light);
-    padding: var(--space-2xl) 0;
+    background-color: var(--white);
+    padding: var(--spacing-2xl) var(--container-padding);
 }
 
 .section-header {
-    max-width: 768px;
+    max-width: var(--max-width-large);
+    /* 768px — Figma */
     text-align: center;
-    margin: 0 auto 80px;
+    margin: 0 auto var(--spacing-xl);
+    /* 80px — Figma spacing-xl */
+}
+
+/* Modificador para alinear a la izquierda */
+.section-header.text-left {
+    margin-left: 0;
+    text-align: left;
+}
+
+.section-header.text-left .section-title,
+.section-header.text-left .section-description {
+    text-align: left;
 }
 
 .section-title {
-    font-size: var(--text-h2);
-    color: var(--color-text-main);
-    margin-bottom: 24px;
+    font-size: var(--font-size-h2);
+    /* 72px — Figma */
+    font-weight: 500;
+    color: var(--color-neutral-darkest);
+    margin-bottom: var(--spacing-md);
+    /* 32px */
     text-align: center;
+    text-transform: uppercase;
+    line-height: 1.1;
 }
 
-
-
 .section-description {
-    font-size: 18px;
-    color: var(--color-text-muted);
+    font-size: var(--font-size-subheading);
+    /* Aplicando el nuevo token */
+    color: var(--text-body);
     font-weight: 500;
     text-align: center;
+    line-height: normal;
 }
 
 .studio-cards {
     display: flex;
-    gap: 80px;
+    gap: var(--spacing-xl);
+    /* 80px — Figma spacing-xl */
 }
 
 .card-text {
@@ -602,13 +754,19 @@ button,
     flex: 1;
     position: relative;
     overflow: hidden;
-    background-color: var(--color-light);
-    border: 1px solid rgba(12, 12, 12, 0.30);
-    border-radius: var(--border-radius-lg);
+    background-color: var(--surface-secondary);
+    /* #fff5f5 — Figma */
+    border-radius: var(--radius-lg);
+    /* Sincronizado con el resto de cards */
+    border: none;
 }
 
 .portfolio-tags {
-    margin-top: 16px;
+    margin-top: var(--spacing-sm);
+    /* 16px */
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
 }
 
 .card-content {
@@ -616,13 +774,39 @@ button,
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    padding: 40px 30px;
+    padding: var(--spacing-md);
+    /* 32px — Figma spacing-md */
+}
+
+.card-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    /* 16px */
+}
+
+.heading3-title {
+    font-size: var(--font-size-h3);
+    /* 32px */
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--color-neutral-darkest);
+    line-height: normal;
+}
+
+.card-description {
+    font-size: var(--body-small);
+    /* 16px — Figma body-small */
+    font-family: var(--font-display);
+    color: rgba(12, 12, 12, 0.60);
+    line-height: normal;
 }
 
 .card-arrow {
     width: 45px;
     height: 45px;
     transition: transform 0.3s;
+    flex-shrink: 0;
 }
 
 .card-arrow:hover {
@@ -631,20 +815,22 @@ button,
 
 /* --- Portfolio Section --- */
 .portfolio-section {
-    padding: var(--space-2xl) 0;
+    padding: var(--spacing-2xl) 0;
 }
 
 .portfolio-grid {
     column-count: 2;
-    column-gap: var(--space-lg);
+    column-gap: var(--spacing-lg);
+    /* 48px */
 }
 
 .portfolio-card {
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--spacing-lg);
     position: relative;
     overflow: hidden;
     break-inside: avoid;
-    border-radius: var(--border-radius-lg);
+    border-radius: var(--radius-lg);
+    /* 24px — Figma */
 }
 
 .portfolio-card:hover {
@@ -717,7 +903,7 @@ button,
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 16px;
+    padding: var(--spacing-sm);
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
 }
 
@@ -744,9 +930,9 @@ button,
 
 .tag {
     background-color: #eee;
-    padding: 4px 8px;
+    padding: 4px var(--spacing-sm);
     font-size: 14px;
-    border-radius: 32px;
+    border-radius: var(--radius-pill);
     font-weight: 600;
     color: var(--color-dark);
 }
@@ -756,13 +942,27 @@ button,
     align-items: center;
     gap: 8px;
     color: var(--color-light);
+    font-family: var(--font-mono);
+    font-size: var(--button);
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.3s ease;
 }
 
-/* --- Services Section --- */
+.portfolio-link:hover {
+    transform: translateX(5px);
+}
+
+.btn-contextual-orange {
+    color: var(--brand-primary) !important;
+}
+
+/* --- Services Section — Figma: cards with orange-500 30% backdrop-blur --- */
 .services-section {
     position: relative;
-    background-color: var(--color-accent);
-    padding: var(--space-2xl) 0;
+    padding: var(--spacing-2xl) 0;
+    min-height: 851px;
+    overflow: hidden;
 }
 
 .services-background {
@@ -775,7 +975,7 @@ button,
     content: '';
     position: absolute;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
 }
 
 .services-content {
@@ -784,46 +984,76 @@ button,
 }
 
 .services-title {
-    font-size: var(--text-h2);
-    color: var(--color-light);
+    font-size: var(--font-size-h2);
+    /* 72px */
+    color: var(--white);
+    font-weight: 500;
 }
 
 .services-grid {
     display: flex;
-    gap: var(--space-lg);
+    gap: var(--spacing-md);
+    /* 32px */
 }
 
 .service-column {
     flex: 1;
-    color: var(--color-light);
+    color: var(--white);
+    background: rgba(232, 50, 12, 0.30);
+    /* orange-500 30% — Figma */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: var(--radius-lg);
+    /* 24px */
+    padding: var(--spacing-md);
+}
+
+.service-title {
+    font-size: var(--font-size-h3);
+    /* 32px */
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: var(--spacing-sm);
+    /* 16px */
+    line-height: normal;
 }
 
 .service-list {
     list-style: none;
+    font-size: var(--body-small);
+    font-family: var(--font-display);
+    color: var(--white);
+    line-height: 2;
 }
 
-/* --- Pricing Section --- */
+/* --- Pricing Section — Figma tokens --- */
 .pricing-section {
-    background-color: var(--color-light);
-    padding: var(--space-2xl) 0;
+    background-color: var(--white);
+    padding: var(--spacing-2xl) 0;
 }
 
 .pricing-cards {
     display: flex;
-    gap: var(--space-lg);
-    margin-bottom: 80px;
+    gap: var(--spacing-md);
+    /* 32px — Figma spacing-md */
+    margin-bottom: var(--spacing-xl);
+    /* 80px */
+    align-items: stretch;
 }
 
 .pricing-card {
     flex: 1;
-    background-color: var(--color-light);
-    border: 1px solid var(--color-gray-border);
-    border-radius: var(--border-radius-lg);
+    background-color: var(--surface-secondary);
+    /* #fff5f5 */
+    border: none;
+    border-radius: var(--radius-lg);
+    /* Unificado a radius-lg */
     display: flex;
     flex-direction: column;
-    padding: 32px;
-    align-self: stretch;
-    gap: 32px;
+    padding: var(--spacing-md);
+    /* Aumentado para mejor aire */
+    gap: var(--spacing-md);
 }
 
 .pricing-content-wrapp {
@@ -833,33 +1063,42 @@ button,
 }
 
 .pricing-card-featured {
-    background-color: var(--color-accent);
-    color: var(--color-light);
+    background-color: var(--brand-primary);
+    /* #e8320c — Figma */
+    color: var(--white);
 }
 
 .pricing-header {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: var(--spacing-sm);
+    /* 16px */
 }
 
 .plan-name {
-    font-size: 16px;
+    font-size: var(--body-small);
+    /* 16px */
+    font-family: var(--font-display);
     font-weight: 500;
-    opacity: 0.6;
+    color: var(--text-body);
+    line-height: normal;
 }
 
 .price-amount {
-    font-size: 56px;
+    font-size: var(--font-size-price);
+    /* 60px — Figma */
+    font-family: var(--font-display);
     font-weight: 500;
-    line-height: 1.2;
+    line-height: 0.7;
+    color: var(--text-title);
 }
 
-.service-title {
-    font-size: 24px;
-    font-weight: 500;
-    margin-bottom: 24px;
-    color: var(--color-light);
+.pricing-card-featured .price-amount {
+    color: var(--white);
+}
+
+.pricing-card-featured .plan-name {
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .pricing-features {
@@ -875,17 +1114,21 @@ button,
 
 .pricing-divider {
     height: 1px;
-    background-color: var(--color-accent);
-    margin: 32px 0px;
+    background-color: var(--brand-secondary);
+    /* #f4baae — Figma brand-secondary */
+    margin: var(--spacing-md) 0;
 }
 
 .pricing-card-featured .pricing-divider {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
-.pricing-card-featured .plan-name {
-    color: rgba(255, 255, 255, 0.8);
-    opacity: 1;
+.pricing-note {
+    text-align: center;
+    width: 100%;
+    margin-top: var(--spacing-md);
+    color: var(--text-body);
+    font-size: var(--body-small);
 }
 
 /* --- Complex & FAQ --- */
@@ -920,7 +1163,6 @@ button,
 
 .complex-title {
     font-size: var(--text-h2);
-    font-weight: bold;
 }
 
 .faq-section {
@@ -970,23 +1212,31 @@ button,
     color: var(--color-text-muted);
 }
 
-/* --- CTA Section --- */
+/* --- Dual CTA Section --- */
 .cta-section {
     position: relative;
     z-index: 2;
+    padding: var(--spacing-xl) 0;
+    width: 100%;
+}
+
+.cta-grid {
     display: flex;
-    max-width: none;
+    gap: var(--spacing-md);
     height: 383px;
-    margin: 0 auto;
     width: 100%;
 }
 
 .cta-card {
     flex: 1;
-    padding: 40px 20px;
+    padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-radius: var(--radius-lg);
+    /* 24px igual a las otras cards */
+    overflow: hidden;
+    text-decoration: none;
 }
 
 .cta-left {
@@ -1000,9 +1250,7 @@ button,
 
 .cta-title {
     font-size: var(--text-h2);
-    font-weight: 600;
     color: var(--color-light);
-    line-height: 1.2;
 }
 
 .cta-title-dark {
@@ -1140,13 +1388,15 @@ button,
 
 /* El botón de enviar ahora podría ser naranjo para combinar */
 .btn-modal-enviar {
-    background: #D9482A;
-    color: white;
+    background: var(--brand-primary);
+    color: var(--white);
     padding: 15px 25px;
     border: none;
-    border-radius: 5px;
+    border-radius: var(--radius-sm);
     cursor: pointer;
-    font-weight: bold;
+    font-family: var(--font-mono);
+    font-size: var(--button);
+    font-weight: 700;
     width: 100%;
     margin-top: 10px;
     transition: background 0.3s;
@@ -1160,8 +1410,8 @@ button,
 .modal-content {
     background: #FFFFFF;
     /* Fondo blanco */
-    padding: 20px;
-    border-radius: 15px;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-lg);
     max-width: 500px;
     width: 90%;
     position: relative;
@@ -1333,12 +1583,12 @@ button,
 
     .cta-section {
         height: auto;
+        padding: var(--spacing-lg) 0;
     }
 
-    .cta-section .container {
+    .cta-grid {
         flex-direction: column !important;
         height: auto !important;
-        padding: 0 20px !important;
     }
 
     .cta-card {
@@ -1399,34 +1649,73 @@ button,
     margin-bottom: -1px;
 }
 
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
 .comparison-table-container {
     background: white;
-    border-radius: 16px;
-    padding: 24px;
-    border: 1px solid var(--color-gray-border);
+    border-radius: var(--radius-md);
+    padding: 0;
+    border: 1px solid var(--stroke);
+    overflow-x: auto; /* Permite scroll horizontal en móviles */
+    margin-bottom: 60px;
+    -webkit-overflow-scrolling: touch;
 }
 
 .comparison-table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 800px; /* Asegura que la tabla no se rompa en pantallas pequeñas */
 }
 
-.comparison-table th,
-.comparison-table td {
-    padding: 20px 16px;
+.comparison-table thead th {
+    background-color: var(--brand-primary);
+    color: var(--white);
+    padding: var(--spacing-sm) var(--spacing-md);
     text-align: center;
-    border-bottom: 1px solid #E5E7EB;
+    border-bottom: 1px solid var(--stroke);
+    font-family: var(--font-display);
+    font-size: var(--font-size-h4);
+    font-weight: 500;
 }
 
-.comparison-table th:first-child,
+.comparison-table thead th:first-child {
+    text-align: left;
+    width: 440px;
+}
+
+.comparison-table td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: center;
+    border-bottom: 1px solid var(--stroke);
+    font-family: var(--font-display);
+    font-size: var(--body-small);
+    color: var(--text-title);
+    height: 80px; /* Standardized height from Figma */
+    vertical-align: middle;
+}
+
 .comparison-table td:first-child {
     text-align: left;
+    font-weight: 500;
 }
 
-.comparison-table th {
-    font-family: var(--font-ui);
-    font-size: 1.25rem;
-    font-weight: 700;
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+
+.check-icon path {
+    stroke: var(--brand-primary);
+}
+
+.close-icon path {
+    stroke: var(--color-dark);
 }
 
 /* ==========================================================================
@@ -1447,18 +1736,18 @@ button,
 }
 
 .hero-description-contact {
-    font-size: 24px;
-    line-height: 32px;
+    font-size: var(--font-size-subheading);
+    line-height: normal;
 }
 
 /* Contact Form Section */
 .contact-form-section {
     background-color: var(--color-light);
-    padding: 112px 0;
+    padding: var(--spacing-2xl) 0;
 }
 
 .contact-form {
-    max-width: 560px;
+    max-width: var(--max-width-medium);
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -1472,17 +1761,19 @@ button,
 }
 
 .form-group label {
-    font-size: 16px;
-    color: var(--color-dark);
+    font-size: var(--body-small);
+    color: var(--text-title);
+    font-family: var(--font-display);
 }
 
 .form-input,
 .form-textarea {
-    border: 1px solid var(--color-accent);
+    border: 1px solid var(--brand-primary);
     padding: 12px;
-    font-size: 16px;
+    font-size: var(--text-sizes-text-regular);
     width: 100%;
     font-family: var(--font-ui);
+    border-radius: 4px;
 }
 
 .form-input:focus,
@@ -1501,17 +1792,18 @@ button,
 }
 
 .btn-submit {
-    background-color: var(--color-accent);
-    border: 1px solid var(--color-dark);
+    background-color: var(--brand-primary);
+    border: 1px solid var(--brand-primary);
     padding: 12px 24px;
-    color: var(--color-light);
-    font-size: 16px;
+    color: var(--white);
+    font-size: var(--button);
     cursor: pointer;
     transition: all 0.3s;
     width: 100%;
     font-family: var(--font-mono);
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
 }
 
 .btn-submit:hover {

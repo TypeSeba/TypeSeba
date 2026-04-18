@@ -169,6 +169,8 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    align-items: center;
+    /* Center horizontally on mobile */
 }
 
 .split-text-col {
@@ -178,7 +180,7 @@
     /* Standard vertical padding, let container handle horizontal */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     /* Align content to the left */
     text-align: left;
@@ -196,18 +198,15 @@
 .split-image-col {
     flex: 1;
     position: relative;
-    min-height: 400px;
-    /* Minimal height for mobile visibility */
+    width: 100%;
+    max-width: 600px;
+    /* Limit width on mobile */
 }
 
 .split-img {
     width: 100%;
-    height: 100%;
     object-fit: cover;
     display: block;
-    position: absolute;
-    /* Ensures it fills the relative container */
-    inset: 0;
     border-radius: 16px;
 }
 
@@ -215,21 +214,17 @@
 @media (min-width: 992px) {
     .split-wrapper {
         flex-direction: row;
-        align-items: stretch;
-        /* Ensures both columns are equal height */
+        align-items: flex-start; /* Align both columns to the top */
     }
 
     .split-text-col {
         padding: 80px 64px;
-        width: 100%;
-        /* Allow it to be centered vertically if needed, but width 100% helps centering in flex row too */
-        /* width: 50% was here before, but let's keep it 50% for the split look */
         width: 50%;
     }
 
     .split-image-col {
         width: 50%;
-        min-height: auto;
-        /* Let flex/stretch handle height */
+        max-width: none;
+        padding-top: 80px; /* Matches the text column's top padding */
     }
 }
