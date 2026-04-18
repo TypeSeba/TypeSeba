@@ -1528,9 +1528,14 @@ button,
         margin: 10px 0;
     }
 
-    .services-section {
+    .services-section,
+    .studio-cards-section,
+    .portfolio-section,
+    .pricing-section,
+    .process-section,
+    .faq-section {
+        padding: 64px 0 !important;
         height: auto !important;
-        padding: 60px 0;
     }
 
     .portfolio-grid {
