@@ -1223,7 +1223,6 @@ button,
 .cta-grid {
     display: flex;
     gap: var(--spacing-md);
-    height: 383px;
     width: 100%;
 }
 
@@ -1592,8 +1591,10 @@ button,
     }
 
     .cta-grid {
+        display: flex;
         flex-direction: column !important;
         height: auto !important;
+        gap: 20px !important;
     }
 
     .cta-card {
