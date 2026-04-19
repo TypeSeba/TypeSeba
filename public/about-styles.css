@@ -3,17 +3,17 @@
 .hero-section-about {
     position: relative;
     width: 100%;
-    height: 472px;
+    min-height: 472px;
+    padding-top: 80px;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .hero-section-about .hero-content {
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    padding-bottom: 0;
 }
 
 .hero-title-about {
@@ -109,7 +109,8 @@
 /* Responsive */
 @media (max-width: 768px) {
     .hero-section-about {
-        height: 400px;
+        min-height: 400px;
+        padding-top: 100px;
     }
 
     .hero-title-about {

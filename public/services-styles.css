@@ -3,8 +3,13 @@
 .hero-section-services {
     position: relative;
     width: 100%;
-    height: 472px;
+    min-height: 472px;
+    padding-top: 80px;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .hero-title-services {
@@ -12,6 +17,7 @@
     line-height: 1.2;
     text-transform: uppercase;
     margin-bottom: 0;
+    text-align: center;
 }
 
 .hero-description-services {
@@ -93,7 +99,8 @@
 /* Responsive */
 @media (max-width: 768px) {
     .hero-section-services {
-        height: 400px;
+        min-height: 400px;
+        padding-top: 100px;
     }
 
     .hero-title-services {

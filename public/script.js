@@ -194,11 +194,29 @@ function updateNavbarColor() {
 function initializeMobileMenu() {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
+    const navbar = mobileMenuBtn?.closest('.navbar');
+
     if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('active'));
+        mobileMenuBtn.addEventListener('click', () => {
+            const isActive = mobileMenu.classList.toggle('active');
+            navbar?.classList.toggle('menu-active', isActive);
+            
+            if (isActive) {
+                document.body.style.overflow = 'hidden';
+                if (window.lenis) lenis.stop();
+            } else {
+                document.body.style.overflow = '';
+                if (window.lenis) lenis.start();
+            }
+        });
     }
-    document.querySelectorAll('.mobile-link').forEach(link => {
-        link.addEventListener('click', () => mobileMenu?.classList.remove('active'));
+    document.querySelectorAll('.mobile-link, .mobile-btn').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu?.classList.remove('active');
+            navbar?.classList.remove('menu-active');
+            document.body.style.overflow = '';
+            if (window.lenis) lenis.start();
+        });
     });
 }
 
