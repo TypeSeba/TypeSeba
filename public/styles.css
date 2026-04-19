@@ -422,6 +422,8 @@ button,
     position: fixed;
     top: var(--spacing-xs);
     /* 4px — Figma */
+    left: 0;
+    right: 0;
     width: 100%;
     display: flex;
     justify-content: center;
