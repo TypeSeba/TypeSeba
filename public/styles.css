@@ -198,7 +198,7 @@ button,
 .container {
     max-width: var(--container-large);
     margin: 0 auto;
-    padding: 0 var(--container-padding);
+    /*padding: 0 var(--container-padding); */
     width: 100%;
 }
 
@@ -540,7 +540,8 @@ button,
     border: none;
     color: var(--color-light);
     cursor: pointer;
-    z-index: 1001; /* Ensure button is always clickable */
+    z-index: 1001;
+    /* Ensure button is always clickable */
 }
 
 .mobile-menu {
@@ -898,7 +899,7 @@ button,
 }
 
 .portfolio-image-04 {
-    background-image: url('img/envato-labs-image-edit (8).jpg');
+    background-image: url('img/envato-labs-image-edit (8).png');
 }
 
 .portfolio-card:hover [class^="portfolio-image"] {

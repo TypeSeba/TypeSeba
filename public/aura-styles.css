@@ -1,0 +1,197 @@
+/* Custom styles for Aura portfolio page */
+
+.aura-hero {
+    height: 472px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding-top: 72px;
+    /* for navbar */
+}
+
+.aura-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.aura-hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.aura-hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: var(--white);
+    padding: 0 var(--container-padding);
+}
+
+.bg-white {
+    background-color: var(--white);
+}
+
+.text-dark {
+    color: var(--text-title) !important;
+}
+
+.aura-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .aura-grid-2 {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+}
+
+.aura-overline {
+    font-family: var(--font-display);
+    font-size: 24px;
+    color: var(--text-body);
+    margin-bottom: var(--spacing-md);
+    text-transform: uppercase;
+}
+
+.aura-heading2 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-h2);
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--text-title);
+    text-transform: uppercase;
+}
+
+.aura-body {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--text-body);
+    line-height: 1.5;
+}
+
+.aura-section-title {
+    flex-direction: column;
+}
+
+.mt-32 {
+    margin-top: 32px;
+}
+
+.mb-32 {
+    margin-bottom: 32px;
+}
+
+.mt-80 {
+    margin-top: 80px;
+}
+
+.aura-image-full {
+    width: 100%;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.aura-image-full img {
+    width: 100%;
+    height: auto;
+    max-height: 729px;
+    object-fit: cover;
+}
+
+.aura-features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.aura-feature-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.aura-feature-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-title);
+}
+
+.aura-colors-grid {
+    display: flex;
+    flex-direction: column;
+    min-height: 729px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+@media (min-width: 900px) {
+    .aura-colors-grid {
+        flex-direction: row;
+    }
+}
+
+.aura-color-left {
+    flex: 1;
+    background-color: #006FFF;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+}
+
+.aura-color-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.aura-color-right-1 {
+    flex: 1;
+    background-color: #F3094B;
+    padding: 32px;
+    min-height: 150px;
+}
+
+.aura-color-right-2 {
+    flex: 1;
+    background-color: #1A1A1A;
+    padding: 32px;
+    min-height: 150px;
+}
+
+.aura-color-right-3 {
+    flex: 1;
+    background-color: #F5F5F5;
+    padding: 32px;
+    min-height: 150px;
+}
+
+.aura-color-text {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--white);
+}
+
+.aura-color-text-dark {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--text-title);
+}
+
+.aura-screens-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
