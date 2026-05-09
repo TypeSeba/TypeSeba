@@ -300,16 +300,6 @@ button,
     transform: translateY(-2px);
 }
 
-.btn-plan-secondary {
-    background-color: var(--white);
-    color: var(--text-title);
-    border: 1px solid var(--text-title);
-}
-
-.btn-cotizar {
-    background-color: var(--white);
-    color: var(--text-title);
-}
 
 /* ==========================================================================
    5. SPECIFIC SECTIONS & ANIMATIONS
@@ -697,20 +687,10 @@ button,
     border-radius: var(--radius-md);
 }
 
-.process-card-title {
-    font-size: 24px;
-    font-weight: 500;
-}
-
 .process-card-content {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-sm);
-}
-
-.process-card-description {
-    font-size: 16px;
-    font-weight: 300;
 }
 
 /* --- Studio Cards Section --- */
@@ -949,11 +929,6 @@ button,
     color: var(--color-light);
 }
 
-.portfolio-description {
-    color: var(--color-light);
-    font-weight: 200;
-}
-
 .tag {
     background-color: #eee;
     padding: 4px var(--spacing-sm);
@@ -1007,13 +982,6 @@ button,
 .services-content {
     position: relative;
     z-index: 1;
-}
-
-.services-title {
-    font-size: var(--font-size-h2);
-    /* 72px */
-    color: var(--white);
-    font-weight: 500;
 }
 
 .services-grid {
@@ -1305,10 +1273,6 @@ button,
     align-items: center;
     justify-content: space-between;
     margin-bottom: 80px;
-}
-
-.footer-logo {
-    flex: 1;
 }
 
 .footer-links {
