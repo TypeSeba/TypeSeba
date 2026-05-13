@@ -95,7 +95,7 @@
 .stat-number {
     font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
     font-size: 72px;
-    color: var(--primary-blue);
+    color: var(--brand-primary);
     line-height: 1;
     font-weight: bold;
 }
@@ -215,7 +215,8 @@
 @media (min-width: 992px) {
     .split-wrapper {
         flex-direction: row;
-        align-items: flex-start; /* Align both columns to the top */
+        align-items: flex-start;
+        /* Align both columns to the top */
     }
 
     .split-text-col {
@@ -226,6 +227,7 @@
     .split-image-col {
         width: 50%;
         max-width: none;
-        padding-top: 80px; /* Matches the text column's top padding */
+        padding-top: 80px;
+        /* Matches the text column's top padding */
     }
 }

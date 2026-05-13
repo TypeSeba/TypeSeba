@@ -195,3 +195,42 @@
     align-items: center;
     overflow: hidden;
 }
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 991px) {
+    .aura-heading2 {
+        font-size: 40px;
+    }
+
+    .aura-overline {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    .aura-body,
+    .aura-body[style] {
+        font-size: 18px !important;
+    }
+
+    .aura-feature-title {
+        font-size: 18px;
+    }
+
+    .mt-80 {
+        margin-top: 40px;
+    }
+
+    .aura-colors-grid {
+        min-height: auto;
+    }
+
+    .aura-color-left {
+        min-height: 200px;
+    }
+
+    /* Override inline padding for sections on mobile */
+    .section[style] {
+        padding-top: 64px !important;
+        padding-bottom: 64px !important;
+    }
+}
