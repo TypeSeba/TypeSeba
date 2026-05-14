@@ -16,7 +16,7 @@
 
     --text-title: #171515;
     /* Texto oscuro principal */
-    --text-body: #979292;
+    --text-body: #767676;
     /* Texto secundario / gris */
 
     --grey-600: #979292;
@@ -650,7 +650,7 @@ button,
 /* --- Process Section — Figma tokens --- */
 .process-section {
     position: relative;
-    background-image: url('img/abstract-background.png');
+    background-image: url('img/pattern-background.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -871,7 +871,7 @@ button,
 }
 
 .portfolio-image-02 {
-    background-image: url('img/Notime.jpg');
+    background-image: url('img/portfolio-notime-preview.webp');
 }
 
 .portfolio-image-03 {
@@ -879,7 +879,7 @@ button,
 }
 
 .portfolio-image-04 {
-    background-image: url('img/envato-labs-image-edit (8).png');
+    background-image: url('img/portfolio-aura-preview.webp');
 }
 
 .portfolio-card:hover [class^="portfolio-image"] {
@@ -969,7 +969,7 @@ button,
 .services-background {
     position: absolute;
     inset: 0;
-    background: url('img/ChatGPT-Image-19-ene-2026,-21_27_28.jpg') center/cover;
+    background: url('img/services-phone-bg.webp') center/cover;
 }
 
 .services-background::after {
@@ -1134,7 +1134,7 @@ button,
 .complex-background {
     position: absolute;
     inset: 0;
-    background: url('img/37.jpg') center/cover;
+    background: url('img/abstract-bg-3.webp') center/cover;
 }
 
 .complex-content {
