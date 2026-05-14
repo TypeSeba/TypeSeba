@@ -1,6 +1,6 @@
 // CONFIGURACIÓN DE SUPABASE
 const supabaseUrl = 'https://hcvyalkfuxrvowbleztr.supabase.co';
-const supabaseKey = 'sb_publishable_ywnkSoUqEBPAXYzxyMMuog_Uc28avyb';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjdnlhbGtmdXhydm93YmxlenRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MjA5MjYsImV4cCI6MjA4NTI5NjkyNn0.uf0bZfjp2n1RM6h4XKxQZDXUI51C3_24kFiIbdXD_aQ';
 
 let _supabase;
 try {
@@ -222,6 +222,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 errEl.textContent = msg;
             }
 
+            console.log('[Modal] Submit disparado. _supabase:', !!_supabase, '| planSeleccionado:', planSeleccionado);
+
             if (!_supabase) {
                 mostrarErrorModal('No se pudo conectar. Por favor recarga la página e intenta de nuevo.');
                 return;
@@ -243,12 +245,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 plan_interes: planSeleccionado
             };
 
-            const { error } = await _supabase.from('perfiles').insert([datos]);
+            console.log('[Modal] Datos a insertar:', datos);
+            console.log('[Modal] Llamando a Supabase insert...');
+
+            const { data: insertData, error } = await _supabase.from('perfiles').insert([datos]).select();
+
+            console.log('[Modal] Respuesta Supabase → data:', insertData, '| error:', error);
+
             if (!error) {
                 document.getElementById('paso-formulario').style.display = 'none';
                 document.getElementById('paso-gracias').style.display = 'block';
             } else {
-                console.error(error);
+                console.error('[Modal] Error completo:', JSON.stringify(error, null, 2));
                 mostrarErrorModal('Hubo un problema al enviar tus datos. Por favor intenta de nuevo.');
                 btnEnviar.textContent = 'Enviar información';
                 btnEnviar.disabled = false;
