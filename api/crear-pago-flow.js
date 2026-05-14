@@ -9,10 +9,9 @@ export default async function handler(req, res) {
     const apiKey = process.env.FLOW_API_KEY;
     const secret = process.env.FLOW_SECRET;
 
-    // Nota: Ajustamos los montos según el plan
-    let amount = 750000; // Valor por defecto
-    if (planId === 'TU_PLAN_ID_1.5M') amount = 1500000;
-    if (planId === 'TU_PLAN_ID_2.5M') amount = 2500000;
+    let amount = 750000;
+    if (planId === 'product-designer') amount = 1500000;
+    if (planId === 'tech-partner') amount = 2500000;
 
     const params = {
         apiKey: apiKey,
@@ -21,8 +20,8 @@ export default async function handler(req, res) {
         amount: amount,
         email: email,
         commerceOrder: `order_${userId.substring(0, 8)}_${Date.now()}`,
-        urlReturn: 'https://tu-web.vercel.app/gracias.html',
-        urlConfirmation: 'https://tu-web.vercel.app/api/confirmar-pago'
+        urlReturn: 'https://typeseba.com/gracias.html',
+        urlConfirmation: 'https://typeseba.com/api/confirmar-pago'
     };
 
     // Firmar la petición (Seguridad de Flow)

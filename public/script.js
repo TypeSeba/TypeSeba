@@ -13,9 +13,9 @@ try {
 
 // CONFIGURACIÓN DE PLANES
 const MIS_PLANES = {
-    growth_content: { id: "growth_content", flowPlanId: "TU_PLAN_ID_750" },
-    product_build: { id: "product_build", flowPlanId: "TU_PLAN_ID_1.5M" },
-    tech_dev: { id: "tech_dev", flowPlanId: "TU_PLAN_ID_2.5M" }
+    growth_content: { id: "growth_content", flowPlanId: "growth-content" },
+    product_build: { id: "product_build", flowPlanId: "product-designer" },
+    tech_dev: { id: "tech_dev", flowPlanId: "tech-partner" }
 };
 
 let planSeleccionado = '';
@@ -34,6 +34,21 @@ function cerrarModal() {
     const modal = document.getElementById('modal-contacto');
     if (modal) modal.style.display = 'none';
     if (lenis) lenis.start();
+
+    const pasoForm = document.getElementById('paso-formulario');
+    const pasoGracias = document.getElementById('paso-gracias');
+    if (pasoForm) pasoForm.style.display = '';
+    if (pasoGracias) pasoGracias.style.display = 'none';
+
+    const formProspecto = document.getElementById('form-prospecto');
+    if (formProspecto) {
+        formProspecto.reset();
+        const btnEnviar = formProspecto.querySelector('.btn-modal-enviar');
+        if (btnEnviar) { btnEnviar.textContent = 'Enviar información'; btnEnviar.disabled = false; }
+        const errEl = formProspecto.querySelector('.modal-form-error');
+        if (errEl) errEl.textContent = '';
+    }
+    emailTemporal = '';
 }
 
 // --- INICIALIZACIÓN DE LENIS (CON SEGURIDAD) ---
@@ -193,7 +208,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if (formProspecto) {
         formProspecto.addEventListener('submit', async (e) => {
             e.preventDefault();
-            if (!_supabase) return;
+
+            const btnEnviar = formProspecto.querySelector('.btn-modal-enviar');
+
+            function mostrarErrorModal(msg) {
+                let errEl = formProspecto.querySelector('.modal-form-error');
+                if (!errEl) {
+                    errEl = document.createElement('p');
+                    errEl.className = 'modal-form-error';
+                    errEl.style.cssText = 'color:#e53e3e;font-size:.875rem;margin:.75rem 0 0;text-align:center;';
+                    btnEnviar.insertAdjacentElement('afterend', errEl);
+                }
+                errEl.textContent = msg;
+            }
+
+            if (!_supabase) {
+                mostrarErrorModal('No se pudo conectar. Por favor recarga la página e intenta de nuevo.');
+                return;
+            }
+
+            const errEl = formProspecto.querySelector('.modal-form-error');
+            if (errEl) errEl.textContent = '';
+            btnEnviar.textContent = 'Enviando...';
+            btnEnviar.disabled = true;
 
             emailTemporal = document.getElementById('p-email').value;
             const datos = {
@@ -201,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 apellido: document.getElementById('p-apellido').value,
                 empresa: document.getElementById('p-empresa').value,
                 tipo_cliente: document.getElementById('p-tipo').value,
-                email: document.getElementById('p-email').value,
+                email: emailTemporal,
                 telefono: document.getElementById('p-whatsapp').value,
                 plan_interes: planSeleccionado
             };
@@ -210,6 +247,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!error) {
                 document.getElementById('paso-formulario').style.display = 'none';
                 document.getElementById('paso-gracias').style.display = 'block';
+            } else {
+                console.error(error);
+                mostrarErrorModal('Hubo un problema al enviar tus datos. Por favor intenta de nuevo.');
+                btnEnviar.textContent = 'Enviar información';
+                btnEnviar.disabled = false;
             }
         });
     }
