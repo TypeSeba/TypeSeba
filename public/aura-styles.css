@@ -73,7 +73,7 @@
 
 .aura-body {
     font-family: var(--font-display);
-    font-size: 22px;
+    font-size: var(--subheading);
     color: var(--text-body);
     line-height: 1.5;
 }
@@ -121,7 +121,7 @@
 
 .aura-feature-title {
     font-family: var(--font-display);
-    font-size: 20px;
+    font-size: var(--body-base);
     font-weight: 700;
     color: var(--text-title);
 }

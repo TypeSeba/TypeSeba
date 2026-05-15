@@ -48,8 +48,7 @@
     --font-size-h2: 72px;
     --font-size-h3: 32px;
     --font-size-h4: 28px;
-    --font-size-subheading: 22px;
-    /* <--- NUEVO TOKEN AÑADIDO */
+    --subheading: 22px;
     --font-size-price: 60px;
     --body-base: 20px;
     --body-small: 16px;
@@ -559,7 +558,7 @@ button,
 
 .mobile-link {
     color: var(--white);
-    font-size: 28px;
+    font-size: var(--font-size-h4);
     font-weight: 700;
     text-transform: uppercase;
     font-family: var(--font-display);
@@ -1167,7 +1166,7 @@ button,
 }
 
 .complex-title {
-    font-size: var(--text-h2);
+    font-size: var(--font-size-h2);
 }
 
 .faq-section {
@@ -1194,7 +1193,7 @@ button,
 }
 
 .faq-question h3 {
-    font-size: 18px;
+    font-size: var(--body-small);
     font-weight: bold;
 }
 
@@ -1261,7 +1260,7 @@ button,
 }
 
 .cta-subtitle {
-    font-size: 18px;
+    font-size: var(--subheading);
     color: var(--color-light);
 }
 
@@ -1450,6 +1449,20 @@ button,
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
+    :root {
+        --font-size-h1: 44px;
+        --font-size-h2: 32px;
+        --font-size-h3: 24px;
+        --font-size-h4: 20px;
+        --subheading: 16px;
+        --body-base: 18px;
+        --body-small: 16px;
+        --button: 16px;
+        --font-size-price: 60px;
+    }
+}
+
+@media (max-width: 768px) {
 
     html,
     body {
@@ -1477,10 +1490,6 @@ button,
     .navbar-content {
         max-width: none;
         width: 100%;
-    }
-
-    .hero-title {
-        font-size: 40px;
     }
 
     .hero-section {
@@ -1556,14 +1565,6 @@ button,
         height: 100%;
     }
 
-    .complex-title {
-        font-size: 32px;
-    }
-
-    .cta-title {
-        font-size: 32px;
-    }
-
     .complex-content {
         align-items: center;
         text-align: center;
@@ -1612,10 +1613,6 @@ button,
         align-items: center;
     }
 
-    .section-title {
-        font-size: 40px;
-    }
-
     .portfolio-card {
         margin-bottom: 20px;
         width: 100%;
@@ -1640,7 +1637,7 @@ button,
     background: none;
     border: none;
     font-family: var(--font-mono);
-    font-size: 1rem;
+    font-size: var(--body-small);
     color: #4B5563;
     cursor: pointer;
     padding: 10px 0;
@@ -1741,7 +1738,7 @@ button,
 }
 
 .hero-title-contact {
-    font-size: var(--text-h1);
+    font-size: var(--font-size-h1);
     line-height: 1.2;
     text-transform: uppercase;
     margin-bottom: 0;
@@ -1834,12 +1831,7 @@ button,
         padding-top: 100px;
     }
 
-    .hero-title-contact {
-        font-size: 40px;
-    }
-
     .hero-description-contact {
-        font-size: 18px;
         line-height: 28px;
     }
 
