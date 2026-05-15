@@ -1124,7 +1124,7 @@ button,
 }
 
 .pricing-card-featured .pricing-divider {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: var(--white-30);
 }
 
 .pricing-note {
@@ -1404,7 +1404,7 @@ button,
 }
 
 .modal-content {
-    background: #FFFFFF;
+    background: var(--white);
     /* Fondo blanco */
     padding: var(--spacing-md);
     border-radius: var(--radius-lg);
@@ -1660,7 +1660,7 @@ button,
 }
 
 .comparison-table-container {
-    background: white;
+    background: var(--white);
     border-radius: var(--radius-md);
     padding: 0;
     border: 1px solid var(--stroke);
