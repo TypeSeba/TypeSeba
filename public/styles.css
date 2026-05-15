@@ -48,7 +48,7 @@
     --font-size-h2: 72px;
     --font-size-h3: 32px;
     --font-size-h4: 28px;
-    --font-size-subheading: 24px;
+    --font-size-subheading: 22px;
     /* <--- NUEVO TOKEN AÑADIDO */
     --font-size-price: 60px;
     --body-base: 20px;
@@ -589,8 +589,13 @@ button,
 }
 
 @keyframes heroSlideUp {
-    from { transform: translateY(30px); }
-    to   { transform: translateY(0); }
+    from {
+        transform: translateY(30px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
 }
 
 .hero-text {
@@ -617,7 +622,7 @@ button,
 }
 
 .hero-description {
-    font-size: var(--font-size-subheading);
+    font-size: var(--body-base);
     /* Aplicando el nuevo token */
     font-family: var(--font-display);
     font-weight: 500;
@@ -737,7 +742,7 @@ button,
 }
 
 .section-description {
-    font-size: var(--font-size-subheading);
+    font-size: var(--body-base);
     /* Aplicando el nuevo token */
     color: var(--text-body);
     font-weight: 500;
@@ -1351,12 +1356,10 @@ button,
     padding: 12px;
     margin: 10px 0;
     background: #F9F9F9;
-    /* Fondo gris muy clarito para los campos */
     border: 1px solid #DDD;
-    /* Borde suave */
     color: rgba(12, 12, 12, 0.60);
-    /* Texto negro al escribir */
     border-radius: 5px;
+    font-size: 16px;
 }
 
 /* Cambia el borde del input cuando el usuario hace clic para escribir */
@@ -1746,7 +1749,7 @@ button,
 }
 
 .hero-description-contact {
-    font-size: var(--font-size-subheading);
+    font-size: var(--body-base);
     line-height: normal;
 }
 
