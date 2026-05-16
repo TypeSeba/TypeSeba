@@ -312,12 +312,21 @@ function initializeAnimations() {
 }
 
 // FAQ logic
-document.querySelectorAll('.faq-question').forEach(question => {
+const faqQuestions = document.querySelectorAll('.faq-question');
+faqQuestions.forEach(question => {
     question.addEventListener('click', () => {
-        const answer = question.parentElement.querySelector('.faq-answer');
-        question.classList.toggle('active');
-        if (answer) {
-            answer.style.display = (answer.style.display === 'block') ? 'none' : 'block';
+        const isOpen = question.classList.contains('active');
+
+        faqQuestions.forEach(q => {
+            q.classList.remove('active');
+            const a = q.parentElement.querySelector('.faq-answer');
+            if (a) a.style.display = 'none';
+        });
+
+        if (!isOpen) {
+            question.classList.add('active');
+            const answer = question.parentElement.querySelector('.faq-answer');
+            if (answer) answer.style.display = 'block';
         }
     });
 });

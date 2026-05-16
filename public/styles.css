@@ -48,7 +48,7 @@
     --font-size-h2: 72px;
     --font-size-h3: 32px;
     --font-size-h4: 28px;
-    --subheading: 22px;
+    --subheading: 18px;
     --font-size-price: 60px;
     --body-base: 20px;
     --body-small: 16px;
@@ -243,7 +243,7 @@ button,
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 12px 24px;
+    padding: var(--spacing-sm) var(--spacing-md);
     font-size: var(--button);
     /* 16px — Figma */
     border-radius: var(--radius-sm);
@@ -446,9 +446,15 @@ button,
     display: block;
 }
 
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
 .desktop-menu {
     display: flex;
-    gap: 32px;
+    gap: var(--spacing-md);
     align-items: center;
 }
 
@@ -472,7 +478,7 @@ button,
     display: inline-block;
     width: 0;
     height: 0;
-    margin-left: 4px;
+    margin-left: var(--spacing-xs);
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
     border-top: 4px solid white;
@@ -544,11 +550,11 @@ button,
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     z-index: 999;
-    padding: 120px 24px 40px;
+    padding: 120px var(--spacing-lg) var(--spacing-xl);
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: 32px;
+    gap: var(--spacing-md);
     overflow-y: auto;
 }
 
@@ -573,7 +579,7 @@ button,
 .mobile-btn {
     width: 100%;
     max-width: 280px;
-    margin-top: 16px;
+    margin-top: var(--spacing-sm);
 }
 
 /* Hero Content */
@@ -642,7 +648,7 @@ button,
     color: var(--brand-primary);
     animation: blink 1s step-end infinite;
     font-weight: 400;
-    margin-left: 4px;
+    margin-left: var(--spacing-xs);
 }
 
 @keyframes blink {
@@ -660,7 +666,6 @@ button,
 /* --- Process Section — Figma tokens --- */
 .process-section {
     position: relative;
-    background-image: url('img/pattern-background.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -732,12 +737,12 @@ button,
     font-size: var(--font-size-h2);
     /* 72px — Figma */
     font-weight: 500;
-    color: var(--color-neutral-darkest);
-    margin-bottom: var(--spacing-md);
+    color: var(--color-dark);
     /* 32px */
     text-align: center;
     text-transform: uppercase;
     line-height: 1.1;
+    margin-bottom: var(--spacing-md);
 }
 
 .section-description {
@@ -758,7 +763,7 @@ button,
 .card-text {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--spacing-sm);
 }
 
 .spacer-12 {
@@ -791,6 +796,7 @@ button,
     justify-content: space-between;
     height: 100%;
     padding: var(--spacing-md);
+    gap: var(--spacing-md);
     /* 32px — Figma spacing-md */
 }
 
@@ -974,6 +980,14 @@ button,
     padding: var(--spacing-2xl) 0;
     min-height: 851px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.services-section>.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .services-background {
@@ -992,12 +1006,16 @@ button,
 .services-content {
     position: relative;
     z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .services-grid {
     display: flex;
+    align-items: flex-end;
     gap: var(--spacing-md);
-    /* 32px */
+    margin-top: auto;
 }
 
 .service-column {
@@ -1010,6 +1028,7 @@ button,
     border-radius: var(--radius-lg);
     /* 24px */
     padding: var(--spacing-md);
+    width: 100%;
 }
 
 .service-title {
@@ -1108,12 +1127,12 @@ button,
 .pricing-features {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: var(--spacing-sm);
 }
 
 .feature-item {
     display: flex;
-    gap: 16px;
+    gap: var(--spacing-sm);
 }
 
 .pricing-divider {
@@ -1138,7 +1157,7 @@ button,
 /* --- Complex & FAQ --- */
 .complex-section {
     position: relative;
-    padding: 64px 0px;
+    padding: var(--container-padding) 0px;
 }
 
 .complex-background {
@@ -1154,14 +1173,14 @@ button,
     flex-direction: column;
     align-items: flex-start;
     /* Botón con ancho fijo (su contenido) */
-    gap: 40px;
+    gap: var(--spacing-xl);
     /* Gap más grande entre texto y botón */
 }
 
 .complex-text-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: var(--spacing-md);
     /* Gap más pequeño entre título y bajada */
 }
 
@@ -1178,7 +1197,7 @@ button,
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: var(--spacing-sm);
 }
 
 .faq-item {
@@ -1188,7 +1207,7 @@ button,
 .faq-question {
     display: flex;
     justify-content: space-between;
-    padding: 20px 24px;
+    padding: var(--spacing-sm);
     cursor: pointer;
 }
 
@@ -1209,7 +1228,7 @@ button,
 
 .faq-answer {
     display: none;
-    padding: 0 24px 24px;
+    padding: 0 var(--spacing-lg) var(--spacing-lg);
 }
 
 .faq-answer p {
@@ -1232,7 +1251,7 @@ button,
 
 .cta-card {
     flex: 1;
-    padding: 40px;
+    padding: var(--spacing-md);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1240,6 +1259,7 @@ button,
     /* 24px igual a las otras cards */
     overflow: hidden;
     text-decoration: none;
+    gap: var(--spacing-sm);
 }
 
 .cta-left {
@@ -1272,7 +1292,7 @@ button,
 .footer {
     background-color: var(--color-dark);
     padding-top: 300px;
-    padding-bottom: 80px;
+    padding-bottom: var(--spacing-xl);
     margin-top: -200px;
     position: relative;
     z-index: 1;
@@ -1282,17 +1302,17 @@ button,
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 80px;
+    margin-bottom: var(--spacing-xl);
 }
 
 .footer-links {
     display: flex;
-    gap: 32px;
+    gap: var(--spacing-md);
 }
 
 .footer-social {
     display: flex;
-    gap: 12px;
+    gap: var(--spacing-sm);
 }
 
 .footer-links a {
@@ -1304,12 +1324,14 @@ button,
 .footer-divider {
     height: 1px;
     background-color: #7B7BAF;
-    margin-bottom: 32px;
+    margin-bottom: var(--spacing-md);
 }
 
 .footer-bottom {
     display: flex;
-    gap: 24px;
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--spacing-lg);
     color: var(--color-light);
     font-size: 14px;
 }
@@ -1328,7 +1350,7 @@ button,
     /* Cambiado a none por defecto para que el JS lo controle */
     justify-content: center;
     align-items: flex-start;
-    padding: 20px 0;
+    padding: var(--spacing-sm) 0;
     z-index: 9999;
     backdrop-filter: blur(5px);
     /* Toque extra de diseño */
@@ -1345,14 +1367,14 @@ button,
 
 .modal-content p {
     color: rgba(12, 12, 12, 0.60);
-    margin: 12px 0px;
+    margin: var(--spacing-sm) 0px;
 }
 
 /* Estilo de los Inputs dentro del modal */
 #form-prospecto input,
 #form-prospecto select {
     width: 100%;
-    padding: 12px;
+    padding: var(--spacing-sm);
     margin: 10px 0;
     background: #F9F9F9;
     border: 1px solid #DDD;
@@ -1411,7 +1433,7 @@ button,
     max-width: 500px;
     width: 90%;
     position: relative;
-    max-height: 90vh;
+    max-height: 100vh;
     overflow-y: auto;
 }
 
@@ -1472,14 +1494,14 @@ button,
     }
 
     .container {
-        padding: 0 20px;
+        padding: 0 var(--spacing-sm);
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
     }
 
     .navbar {
-        padding: 0 20px;
+        padding: 0 var(--spacing-sm);
     }
 
     img {
@@ -1506,17 +1528,17 @@ button,
 
     .hero-content {
         height: auto;
-        padding: 0 20px;
+        padding: 0 var(--spacing-sm);
     }
 
     .hero-text {
-        gap: 24px;
+        gap: var(--spacing-lg);
     }
 
     .hero-buttons {
         flex-direction: column;
         width: 100%;
-        gap: 12px;
+        gap: var(--spacing-sm);
     }
 
     .studio-cards,
@@ -1525,7 +1547,7 @@ button,
     .services-grid {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: var(--spacing-sm);
         width: 100%;
     }
 
@@ -1540,7 +1562,7 @@ button,
     .pricing-section,
     .process-section,
     .faq-section {
-        padding: 64px 0 !important;
+        padding: var(--container-padding) 0 !important;
         height: auto !important;
     }
 
@@ -1593,7 +1615,7 @@ button,
         display: flex;
         flex-direction: column !important;
         height: auto !important;
-        gap: 20px !important;
+        gap: var(--spacing-sm) !important;
     }
 
     .cta-card {
@@ -1602,7 +1624,7 @@ button,
     }
 
     .footer {
-        padding-top: 80px;
+        padding-top: var(--spacing-xl);
         margin-top: 0;
     }
 
@@ -1614,13 +1636,13 @@ button,
     }
 
     .portfolio-card {
-        margin-bottom: 20px;
+        margin-bottom: var(--spacing-sm);
         width: 100%;
     }
 
     .section-header {
         max-width: 100%;
-        margin-bottom: 40px;
+        margin-bottom: var(--spacing-xl);
     }
 }
 
@@ -1628,8 +1650,8 @@ button,
 .tabs-nav {
     display: flex;
     justify-content: center;
-    gap: 40px;
-    margin-bottom: 40px;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
     border-bottom: 1px solid #E5E7EB;
 }
 
@@ -1729,7 +1751,7 @@ button,
     position: relative;
     width: 100%;
     min-height: 472px;
-    padding-top: 80px;
+    padding-top: var(--spacing-xl);
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -1761,7 +1783,7 @@ button,
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: var(--spacing-lg);
 }
 
 .form-group {
@@ -1779,7 +1801,7 @@ button,
 .form-input,
 .form-textarea {
     border: 1px solid var(--brand-primary);
-    padding: 12px;
+    padding: var(--spacing-sm);
     font-size: var(--text-sizes-text-regular);
     width: 100%;
     font-family: var(--font-ui);
@@ -1804,7 +1826,7 @@ button,
 .btn-submit {
     background-color: var(--brand-primary);
     border: 1px solid var(--brand-primary);
-    padding: 12px 24px;
+    padding: var(--spacing-sm) var(--spacing-md);
     color: var(--white);
     font-size: var(--button);
     cursor: pointer;
@@ -1828,7 +1850,7 @@ button,
 @media (max-width: 768px) {
     .hero-section-contact {
         min-height: 400px;
-        padding-top: 100px;
+        padding-top: var(--spacing-2xl);
     }
 
     .hero-description-contact {
@@ -1836,6 +1858,51 @@ button,
     }
 
     .contact-form-section {
-        padding: 64px 0;
+        padding: var(--container-padding) 0;
+    }
+}
+
+@media (max-width: 375px) {
+    .modal-overlay {
+        padding: 8px 0;
+        align-items: flex-start;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .modal-content {
+        padding: var(--spacing-sm);
+        width: 95%;
+        max-height: none;
+        overflow-y: visible;
+    }
+
+    .modal-content h2 {
+        font-size: 24px;
+        margin: 12px 0;
+        line-height: 1.2;
+    }
+
+    .modal-content p {
+        font-size: 13px;
+        margin: 8px 0;
+    }
+
+    #form-prospecto input,
+    #form-prospecto select {
+        padding: 10px;
+        margin: 6px 0;
+        font-size: 14px;
+    }
+
+    .btn-modal-enviar {
+        padding: 12px;
+        font-size: 14px;
+        margin-top: 8px;
+    }
+
+    .input-row {
+        flex-direction: column;
+        gap: 0;
     }
 }

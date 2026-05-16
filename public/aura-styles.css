@@ -83,15 +83,15 @@
 }
 
 .mt-32 {
-    margin-top: 32px;
+    margin-top: var(--spacing-md);
 }
 
 .mb-32 {
-    margin-bottom: 32px;
+    margin-bottom: var(--spacing-md);
 }
 
 .mt-80 {
-    margin-top: 80px;
+    margin-top: var(--spacing-xl);
 }
 
 .aura-image-full {
@@ -143,7 +143,7 @@
 .aura-color-left {
     flex: 1;
     background-color: #006FFF;
-    padding: 32px;
+    padding: var(--spacing-md);
     display: flex;
     flex-direction: column;
     min-height: 300px;
@@ -158,21 +158,21 @@
 .aura-color-right-1 {
     flex: 1;
     background-color: #F3094B;
-    padding: 32px;
+    padding: var(--spacing-md);
     min-height: 150px;
 }
 
 .aura-color-right-2 {
     flex: 1;
     background-color: #1A1A1A;
-    padding: 32px;
+    padding: var(--spacing-md);
     min-height: 150px;
 }
 
 .aura-color-right-3 {
     flex: 1;
     background-color: var(--surface-secondary);
-    padding: 32px;
+    padding: var(--spacing-md);
     min-height: 150px;
 }
 
@@ -217,7 +217,7 @@
     }
 
     .mt-80 {
-        margin-top: 40px;
+        margin-top: var(--spacing-xl);
     }
 
     .aura-colors-grid {
@@ -230,7 +230,7 @@
 
     /* Override inline padding for sections on mobile */
     .section[style] {
-        padding-top: 64px !important;
-        padding-bottom: 64px !important;
+        padding-top: var(--container-padding) !important;
+        padding-bottom: var(--container-padding) !important;
     }
 }

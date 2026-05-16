@@ -4,7 +4,7 @@
     position: relative;
     width: 100%;
     min-height: 472px;
-    padding-top: 80px;
+    padding-top: var(--spacing-xl);
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -33,28 +33,27 @@
 /* About Content Section */
 .about-content-section {
     background-color: var(--white);
-    padding: 112px 0;
 }
 
 .about-intro {
     max-width: 768px;
     text-align: center;
-    margin: 0 auto 80px;
+    margin: 0 auto var(--spacing-xl);
 }
 
 .about-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 48px;
-    margin-bottom: 80px;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
 }
 
 .about-card {
     background-color: var(--bg-gray);
-    padding: 40px 32px;
+    padding: var(--spacing-xl) var(--spacing-md);
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: var(--spacing-sm);
 }
 
 .about-card-title {
@@ -81,8 +80,8 @@
 .experience-stats {
     display: flex;
     justify-content: space-around;
-    gap: 48px;
-    margin-top: 48px;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
 }
 
 .stat-item {
@@ -110,7 +109,7 @@
 @media (max-width: 768px) {
     .hero-section-about {
         min-height: 400px;
-        padding-top: 100px;
+        padding-top: var(--spacing-2xl);
     }
 
     .hero-title-about {
@@ -123,21 +122,21 @@
     }
 
     .about-content-section {
-        padding: 64px 0;
+        padding: var(--container-padding) 0;
     }
 
     .about-intro {
-        margin-bottom: 48px;
+        margin-bottom: var(--spacing-lg);
     }
 
     .about-grid {
         grid-template-columns: 1fr;
-        gap: 32px;
-        margin-bottom: 64px;
+        gap: var(--spacing-md);
+        margin-bottom: var(--container-padding);
     }
 
     .about-card {
-        padding: 32px 24px;
+        padding: var(--spacing-md) var(--spacing-lg);
     }
 
     .about-card-title {
@@ -146,8 +145,8 @@
 
     .experience-stats {
         flex-direction: column;
-        gap: 32px;
-        margin-top: 32px;
+        gap: var(--spacing-md);
+        margin-top: var(--spacing-md);
     }
 
     .stat-number {
@@ -163,7 +162,6 @@
 .split-section {
     width: 100%;
     background-color: var(--white);
-    padding: 120px 0;
 }
 
 .split-wrapper {
@@ -177,7 +175,7 @@
 .split-text-col {
     flex: 1;
     background-color: var(--white);
-    padding: 64px 0;
+    padding: var(--container-padding) 0;
     /* Standard vertical padding, let container handle horizontal */
     display: flex;
     flex-direction: column;
@@ -220,14 +218,14 @@
     }
 
     .split-text-col {
-        padding: 80px 64px;
+        padding: var(--spacing-xl) var(--container-padding);
         width: 50%;
     }
 
     .split-image-col {
         width: 50%;
         max-width: none;
-        padding-top: 80px;
+        padding-top: var(--spacing-xl);
         /* Matches the text column's top padding */
     }
 }
