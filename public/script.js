@@ -1,6 +1,6 @@
 // CONFIGURACIÓN DE SUPABASE
 const supabaseUrl = 'https://hcvyalkfuxrvowbleztr.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjdnlhbGtmdXhydm93YmxlenRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MjA5MjYsImV4cCI6MjA4NTI5NjkyNn0.uf0bZfjp2n1RM6h4XKxQZDXUI51C3_24kFiIbdXD_aQ';
+const supabaseKey = 'sb_publishable_ywnkSoUqEBPAXYzxyMMuog_Uc28avyb';
 
 let _supabase;
 
@@ -65,7 +65,7 @@ try {
 // --- FUNCIONES DE NAVEGACIÓN Y COMPONENTES ---
 function initializeSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
@@ -103,7 +103,7 @@ function initializeMobileMenu() {
         mobileMenuBtn.addEventListener('click', () => {
             const isActive = mobileMenu.classList.toggle('active');
             navbar?.classList.toggle('menu-active', isActive);
-            
+
             if (isActive) {
                 document.body.style.overflow = 'hidden';
                 if (lenis) lenis.stop();
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadComponents();
     initializeAnimations();
     initializeSmoothScroll();
-    
+
     if (document.querySelector('.typewriter-text')) {
         typingEffect();
     }
@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 4. Otros listeners
     document.getElementById('close-modal')?.addEventListener('click', cerrarModal);
-    
+
     document.getElementById('btn-pagar-ahora')?.addEventListener('click', async () => {
         if (!emailTemporal || !planSeleccionado) return;
         const plan = MIS_PLANES[planSeleccionado];
@@ -342,7 +342,7 @@ function typingEffect() {
     const el = document.querySelector('.typewriter-text');
     if (!el) return;
     let word = words[typeIndex].split("");
-    var loopTyping = function() {
+    var loopTyping = function () {
         if (word.length > 0) {
             el.innerHTML += word.shift();
             typeTimer = setTimeout(loopTyping, 120);
@@ -357,7 +357,7 @@ function deletingEffect() {
     const el = document.querySelector('.typewriter-text');
     if (!el) return;
     let word = el.innerHTML.split("");
-    var loopDeleting = function() {
+    var loopDeleting = function () {
         if (word.length > 0) {
             word.pop();
             el.innerHTML = word.join("");
@@ -378,7 +378,7 @@ document.querySelectorAll('.portfolio-card').forEach(card => {
     if (video) {
         card.addEventListener('mouseenter', () => {
             video.currentTime = 0;
-            video.play().catch(() => {});
+            video.play().catch(() => { });
         });
         card.addEventListener('mouseleave', () => {
             video.pause();
