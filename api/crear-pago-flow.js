@@ -34,7 +34,7 @@ export default async function handler(req, res) {
         for (const key in params) formData.append(key, params[key]);
         formData.append('s', signature);
 
-        const response = await fetch('https://www.flow.cl/api/payment/create', {
+        const response = await fetch('https://sandbox.flow.cl/api/payment/create', {
             method: 'POST',
             body: formData
         });
