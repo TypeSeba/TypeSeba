@@ -3,13 +3,6 @@ const supabaseUrl = 'https://hcvyalkfuxrvowbleztr.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjdnlhbGtmdXhydm93YmxlenRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MjA5MjYsImV4cCI6MjA4NTI5NjkyNn0.uf0bZfjp2n1RM6h4XKxQZDXUI51C3_24kFiIbdXD_aQ';
 
 let _supabase;
-try {
-    if (window.supabase) {
-        _supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-    }
-} catch (e) {
-    console.error("Error al inicializar Supabase:", e);
-}
 
 // CONFIGURACIÓN DE PLANES
 const MIS_PLANES = {
@@ -150,6 +143,15 @@ async function loadComponents() {
 
 // --- EVENT LISTENERS PRINCIPALES ---
 document.addEventListener('DOMContentLoaded', () => {
+    // 0. Inicializar Supabase (espera a que el DOM y los scripts CDN estén listos)
+    try {
+        if (window.supabase) {
+            _supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+        }
+    } catch (e) {
+        console.error("Error al inicializar Supabase:", e);
+    }
+
     // 1. Inicializar componentes y animaciones básicas
     loadComponents();
     initializeAnimations();
