@@ -240,6 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             console.log('[Modal] Datos a insertar:', datos);
             console.log('[Modal] Llamando a Supabase insert...');
+            console.log('[Modal] Supabase headers:', window._supabase.rest?.headers);
 
             const { data: insertData, error } = await window._supabase.from('perfiles').insert([datos]).select();
 
