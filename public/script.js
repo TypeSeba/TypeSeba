@@ -246,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('[Modal] Llamando a Supabase insert...');
             console.log('[Modal] Supabase headers:', window._supabase.rest?.headers);
 
-            const { data: insertData, error } = await window._supabase.from('perfiles').insert([datos]).select();
+            const { data: insertData, error } = await window._supabase.from('perfiles').insert([datos]);
 
             console.log('[Modal] Respuesta Supabase → data:', insertData, '| error:', error);
 
