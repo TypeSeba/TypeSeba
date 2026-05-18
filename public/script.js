@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const res = await fetch('https://hcvyalkfuxrvowbleztr.supabase.co/functions/v1/solicitar-cancelacion', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjdnlhbGtmdXhydm93YmxlenRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MjA5MjYsImV4cCI6MjA4NTI5NjkyNn0.uf0bZfjp2n1RM6h4XKxQZDXUI51C3_24kFiIbdXD_aQ' },
                 body: JSON.stringify({ email })
             });
             if (res.ok) {
