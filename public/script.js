@@ -1,8 +1,7 @@
 // CONFIGURACIÓN DE SUPABASE
 const supabaseUrl = 'https://hcvyalkfuxrvowbleztr.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjdnlhbGtmdXhydm93YmxlenRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MjA5MjYsImV4cCI6MjA4NTI5NjkyNn0.uf0bZfjp2n1RM6h4XKxQZDXUI51C3_24kFiIbdXD_aQ';
-
-window._supabase = undefined;
+window._supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
 // CONFIGURACIÓN DE PLANES
 const MIS_PLANES = {
@@ -379,8 +378,3 @@ document.querySelectorAll('.portfolio-card').forEach(card => {
     }
 });
 
-if (window.supabase) {
-    window._supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-} else {
-    console.error('Supabase CDN no cargado');
-}
