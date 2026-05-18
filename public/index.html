@@ -781,9 +781,30 @@
                 <a href="privacy.html">Política de Privacidad</a>
                 <a href="terms.html">Términos de Servicio</a>
                 <a href="cookies.html">Política de Cookies</a>
+                <a href="#" id="btn-cancelar-suscripcion">Cancelar suscripción</a>
             </div>
         </div>
     </footer>
+
+    <div id="modal-cancelacion" class="modal-overlay">
+        <div class="modal-content fade-in-up">
+            <button id="close-modal-cancelacion" class="close-btn" aria-label="Cerrar">&times;</button>
+
+            <div id="cancelacion-formulario">
+                <h2>Cancelar suscripción</h2>
+                <p>Ingresa el correo con el que te suscribiste. Procesaremos tu cancelación en un plazo máximo de 3 horas hábiles. Tu plan seguirá activo hasta el fin del período pagado.</p>
+                <form id="form-cancelacion">
+                    <input type="email" id="c-email" placeholder="Correo electrónico" required>
+                    <button type="submit" class="btn-modal-enviar">Solicitar cancelación</button>
+                </form>
+            </div>
+
+            <div id="cancelacion-gracias" style="display: none;">
+                <h2>Solicitud recibida</h2>
+                <p>Hemos registrado tu solicitud de cancelación. Recibirás un correo de confirmación en breve. Tu plan permanecerá activo hasta el fin del período pagado.</p>
+            </div>
+        </div>
+    </div>
 
     <div id="modal-contacto" class="modal-overlay">
         <div class="modal-content fade-in-up">

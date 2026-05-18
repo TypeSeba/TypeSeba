@@ -265,6 +265,53 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Otros listeners
     document.getElementById('close-modal')?.addEventListener('click', cerrarModal);
 
+    // Modal cancelación
+    document.getElementById('btn-cancelar-suscripcion')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('modal-cancelacion').style.display = 'flex';
+    });
+
+    document.getElementById('close-modal-cancelacion')?.addEventListener('click', () => {
+        document.getElementById('modal-cancelacion').style.display = 'none';
+    });
+
+    document.getElementById('modal-cancelacion')?.addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) e.currentTarget.style.display = 'none';
+    });
+
+    document.getElementById('form-cancelacion')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('c-email').value.trim();
+        const btn = e.target.querySelector('.btn-modal-enviar');
+        btn.disabled = true;
+        btn.textContent = 'Enviando...';
+
+        try {
+            const res = await fetch('/api/solicitar-cancelacion', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+            if (res.ok) {
+                document.getElementById('cancelacion-formulario').style.display = 'none';
+                document.getElementById('cancelacion-gracias').style.display = 'block';
+            } else {
+                btn.disabled = false;
+                btn.textContent = 'Solicitar cancelación';
+                alert('Hubo un error. Por favor intenta nuevamente.');
+            }
+        } catch {
+            btn.disabled = false;
+            btn.textContent = 'Solicitar cancelación';
+            alert('Hubo un error. Por favor intenta nuevamente.');
+        }
+    });
+
+    if (new URLSearchParams(window.location.search).get('cancelar') === '1') {
+        const m = document.getElementById('modal-cancelacion');
+        if (m) m.style.display = 'flex';
+    }
+
     document.getElementById('btn-pagar-ahora')?.addEventListener('click', async () => {
         if (!emailTemporal || !planSeleccionado) return;
         const plan = MIS_PLANES[planSeleccionado];
