@@ -143,15 +143,6 @@ async function loadComponents() {
 
 // --- EVENT LISTENERS PRINCIPALES ---
 document.addEventListener('DOMContentLoaded', () => {
-    // 0. Inicializar Supabase (espera a que el DOM y los scripts CDN estén listos)
-    try {
-        if (window.supabase) {
-            _supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-        }
-    } catch (e) {
-        console.error("Error al inicializar Supabase:", e);
-    }
-
     // 1. Inicializar componentes y animaciones básicas
     loadComponents();
     initializeAnimations();
@@ -386,3 +377,9 @@ document.querySelectorAll('.portfolio-card').forEach(card => {
         });
     }
 });
+
+if (window.supabase) {
+    _supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+} else {
+    console.error('Supabase CDN no cargado');
+}
