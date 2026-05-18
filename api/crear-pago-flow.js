@@ -9,9 +9,9 @@ export default async function handler(req, res) {
     const apiKey = process.env.FLOW_API_KEY;
     const secret = process.env.FLOW_SECRET;
 
-    let amount = 750000;
-    if (planId === 'product-designer') amount = 1500000;
-    if (planId === 'tech-partner') amount = 2500000;
+    let amount = 900000;
+    if (planId === 'product-designer') amount = 1700000;
+    if (planId === 'tech-partner') amount = 2700000;
 
     const params = {
         apiKey: apiKey,
