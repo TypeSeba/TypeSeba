@@ -1,7 +1,9 @@
 // CONFIGURACIÓN DE SUPABASE
 const supabaseUrl = 'https://hcvyalkfuxrvowbleztr.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjdnlhbGtmdXhydm93YmxlenRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MjA5MjYsImV4cCI6MjA4NTI5NjkyNn0.uf0bZfjp2n1RM6h4XKxQZDXUI51C3_24kFiIbdXD_aQ';
-window._supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+window._supabase = window.supabase.createClient(supabaseUrl, supabaseKey, {
+  auth: { persistSession: false }
+});
 console.log('Supabase client:', window._supabase);
 console.log('Supabase URL:', supabaseUrl);
 console.log('Supabase Key primeros 20 chars:', supabaseKey.substring(0, 20));
