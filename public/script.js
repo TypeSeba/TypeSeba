@@ -253,6 +253,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!error) {
                 document.getElementById('paso-formulario').style.display = 'none';
                 document.getElementById('paso-gracias').style.display = 'block';
+                fetch('https://hcvyalkfuxrvowbleztr.supabase.co/functions/v1/notify-prospecto', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjdnlhbGtmdXhydm93YmxlenRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MjA5MjYsImV4cCI6MjA4NTI5NjkyNn0.uf0bZfjp2n1RM6h4XKxQZDXUI51C3_24kFiIbdXD_aQ' },
+                    body: JSON.stringify(datos)
+                }).catch(err => console.error('[notify-prospecto]', err));
             } else {
                 console.error('[Modal] Error completo:', JSON.stringify(error, null, 2));
                 mostrarErrorModal('Hubo un problema al enviar tus datos. Por favor intenta de nuevo.');

@@ -32,8 +32,8 @@ serve(async (req: Request) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'TypeSeba <no-reply@typeseba.com>',
-      to: ['contact@typeseba.com'],
+      from: 'TypeSeba <contact@typeseba.com>',
+      to: ['se.bluedesign@gmail.com'],
       subject: `⚠️ Solicitud de cancelación — ${email}`,
       text: `Se ha recibido una solicitud de cancelación.\n\nCorreo del cliente: ${email}\n\nProcesarla dentro de las próximas 3 horas hábiles.`,
     }),
