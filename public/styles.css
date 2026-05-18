@@ -1372,7 +1372,8 @@ button,
 
 /* Estilo de los Inputs dentro del modal */
 #form-prospecto input,
-#form-prospecto select {
+#form-prospecto select,
+#form-cancelacion input {
     width: 100%;
     padding: var(--spacing-sm);
     margin: 10px 0;
@@ -1385,7 +1386,8 @@ button,
 
 /* Cambia el borde del input cuando el usuario hace clic para escribir */
 #form-prospecto input:focus,
-#form-prospecto select:focus {
+#form-prospecto select:focus,
+#form-cancelacion input:focus {
     outline: none;
     border-color: #D9482A;
     /* El borde se vuelve naranjo al escribir */
@@ -1889,7 +1891,8 @@ button,
     }
 
     #form-prospecto input,
-    #form-prospecto select {
+    #form-prospecto select,
+    #form-cancelacion input {
         padding: 10px;
         margin: 6px 0;
         font-size: 14px;
