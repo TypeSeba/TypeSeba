@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.textContent = 'Enviando...';
 
         try {
-            const res = await fetch('/api/solicitar-cancelacion', {
+            const res = await fetch('https://hcvyalkfuxrvowbleztr.supabase.co/functions/v1/solicitar-cancelacion', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email })
