@@ -2,7 +2,7 @@
 const supabaseUrl = 'https://hcvyalkfuxrvowbleztr.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjdnlhbGtmdXhydm93YmxlenRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MjA5MjYsImV4cCI6MjA4NTI5NjkyNn0.uf0bZfjp2n1RM6h4XKxQZDXUI51C3_24kFiIbdXD_aQ';
 
-let _supabase;
+window._supabase = undefined;
 
 // CONFIGURACIÓN DE PLANES
 const MIS_PLANES = {
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             console.log("Formulario interceptado correctamente");
 
-            if (!_supabase) {
+            if (!window._supabase) {
                 alert("Error: No se pudo conectar con Supabase. Por favor recarga la página.");
                 return;
             }
@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 mensaje: document.getElementById('mensaje').value
             };
 
-            const { error } = await _supabase.from('consultas').insert([datos]);
+            const { error } = await window._supabase.from('consultas').insert([datos]);
 
             if (!error) {
                 contactForm.reset();
@@ -215,9 +215,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 errEl.textContent = msg;
             }
 
-            console.log('[Modal] Submit disparado. _supabase:', !!_supabase, '| planSeleccionado:', planSeleccionado);
+            console.log('[Modal] Submit disparado. window._supabase:', !!window._supabase, '| planSeleccionado:', planSeleccionado);
 
-            if (!_supabase) {
+            if (!window._supabase) {
                 mostrarErrorModal('No se pudo conectar. Por favor recarga la página e intenta de nuevo.');
                 return;
             }
@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('[Modal] Datos a insertar:', datos);
             console.log('[Modal] Llamando a Supabase insert...');
 
-            const { data: insertData, error } = await _supabase.from('perfiles').insert([datos]).select();
+            const { data: insertData, error } = await window._supabase.from('perfiles').insert([datos]).select();
 
             console.log('[Modal] Respuesta Supabase → data:', insertData, '| error:', error);
 
@@ -379,7 +379,7 @@ document.querySelectorAll('.portfolio-card').forEach(card => {
 });
 
 if (window.supabase) {
-    _supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+    window._supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 } else {
     console.error('Supabase CDN no cargado');
 }
