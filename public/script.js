@@ -16,7 +16,8 @@ const MIS_PLANES = {
 };
 
 let planSeleccionado = '';
-let emailTemporal = '';
+let emailTemporal    = '';
+let nombreTemporal   = '';
 let lenis; // Declaración global
 
 // Funciones de utilidad para el modal
@@ -45,7 +46,8 @@ function cerrarModal() {
         const errEl = formProspecto.querySelector('.modal-form-error');
         if (errEl) errEl.textContent = '';
     }
-    emailTemporal = '';
+    emailTemporal  = '';
+    nombreTemporal = '';
 }
 
 // --- INICIALIZACIÓN DE LENIS (CON SEGURIDAD) ---
@@ -231,7 +233,8 @@ document.addEventListener('DOMContentLoaded', () => {
             btnEnviar.textContent = 'Enviando...';
             btnEnviar.disabled = true;
 
-            emailTemporal = document.getElementById('p-email').value;
+            emailTemporal  = document.getElementById('p-email').value;
+            nombreTemporal = document.getElementById('p-nombre').value;
             const datos = {
                 nombre: document.getElementById('p-nombre').value,
                 apellido: document.getElementById('p-apellido').value,
@@ -286,29 +289,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('form-cancelacion')?.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const email = document.getElementById('c-email').value.trim();
-        const btn = e.target.querySelector('.btn-modal-enviar');
-        btn.disabled = true;
-        btn.textContent = 'Enviando...';
+        const email  = document.getElementById('c-email').value.trim();
+        const btn    = e.target.querySelector('.btn-modal-enviar');
+        const errEl  = document.getElementById('cancelacion-error');
+
+        btn.disabled        = true;
+        btn.textContent     = 'Procesando...';
+        errEl.style.display = 'none';
 
         try {
-            const res = await fetch('https://hcvyalkfuxrvowbleztr.supabase.co/functions/v1/solicitar-cancelacion', {
+            const res  = await fetch('/api/cancelar-suscripcion', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjdnlhbGtmdXhydm93YmxlenRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MjA5MjYsImV4cCI6MjA4NTI5NjkyNn0.uf0bZfjp2n1RM6h4XKxQZDXUI51C3_24kFiIbdXD_aQ' },
-                body: JSON.stringify({ email })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email }),
             });
-            if (res.ok) {
+            const data = await res.json();
+
+            if (res.ok && data.success) {
                 document.getElementById('cancelacion-formulario').style.display = 'none';
-                document.getElementById('cancelacion-gracias').style.display = 'block';
+                document.getElementById('cancelacion-gracias').style.display    = 'block';
             } else {
-                btn.disabled = false;
-                btn.textContent = 'Solicitar cancelación';
-                alert('Hubo un error. Por favor intenta nuevamente.');
+                errEl.textContent   = data.error || 'Hubo un error. Por favor intenta nuevamente.';
+                errEl.style.display = 'block';
+                btn.disabled        = false;
+                btn.textContent     = 'Solicitar cancelación';
             }
         } catch {
-            btn.disabled = false;
-            btn.textContent = 'Solicitar cancelación';
-            alert('Hubo un error. Por favor intenta nuevamente.');
+            errEl.textContent   = 'No pudimos conectar con el servidor. Intenta nuevamente.';
+            errEl.style.display = 'block';
+            btn.disabled        = false;
+            btn.textContent     = 'Solicitar cancelación';
         }
     });
 
@@ -328,8 +338,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     planId: plan.flowPlanId,
-                    email: emailTemporal,
-                    userId: "prospecto_" + Date.now()
+                    email:  emailTemporal,
+                    nombre: nombreTemporal,
                 })
             });
             const data = await response.json();
