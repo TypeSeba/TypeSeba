@@ -34,16 +34,23 @@ const THANKS_PAGES = {
 };
 
 export default async function handler(req, res) {
-    // Flow envía POST (webhook) al url_return; el browser puede llegar como GET
     const token  = req.body?.token  ?? req.query?.token;
     const planId = req.query?.plan;
     const email  = req.query?.email;
+
+    console.log('[confirmar-registro] Inicio →', {
+        method: req.method,
+        token:  token ? token.slice(0, 8) + '…' : null,
+        planId,
+        email,
+    });
 
     const thanksPage = THANKS_PAGES[planId] ?? '/thanks-growth.html';
     const errorPage  = `${thanksPage}?error=1`;
 
     if (!token) {
-        return req.method === 'GET' ? res.redirect(302, errorPage) : res.status(400).end();
+        console.log('[confirmar-registro] Sin token → redirigiendo a error:', errorPage);
+        return res.redirect(302, errorPage);
     }
 
     const apiKey = process.env.FLOW_API_KEY;
@@ -52,10 +59,12 @@ export default async function handler(req, res) {
     try {
         // 1. Verificar que la tarjeta quedó registrada
         const status = await flowGet('customer/getRegisterStatus', { apiKey, token }, secret);
+        console.log('[confirmar-registro] getRegisterStatus →', JSON.stringify(status));
 
         // status 1 = tarjeta registrada exitosamente
         if (status.status !== 1) {
-            return req.method === 'GET' ? res.redirect(302, errorPage) : res.status(200).end();
+            console.log('[confirmar-registro] Tarjeta no registrada (status≠1) → redirigiendo a error:', errorPage);
+            return res.redirect(302, errorPage);
         }
 
         // 2. Crear suscripción en Flow
@@ -64,13 +73,14 @@ export default async function handler(req, res) {
             planId:     `typeseba-${planId}`,
             customerId: status.customerId,
         }, secret);
+        console.log('[confirmar-registro] subscription/create →', JSON.stringify(subscription));
 
         // 3. Guardar en Supabase
         if (subscription.subscriptionId && email) {
             const supabaseUrl = process.env.SUPABASE_URL;
             const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
 
-            await fetch(
+            const patchRes = await fetch(
                 `${supabaseUrl}/rest/v1/perfiles?email=eq.${encodeURIComponent(email)}`,
                 {
                     method: 'PATCH',
@@ -87,12 +97,14 @@ export default async function handler(req, res) {
                     }),
                 }
             );
+            console.log('[confirmar-registro] Supabase PATCH status:', patchRes.status);
         }
 
-    } catch {
+    } catch (err) {
+        console.log('[confirmar-registro] ERROR en try:', err.message);
         // no bloquear al usuario — redirigir igual
     }
 
-    if (req.method === 'GET') return res.redirect(302, thanksPage);
-    return res.status(200).end();
+    console.log('[confirmar-registro] Redirigiendo a:', thanksPage);
+    return res.redirect(302, thanksPage);
 }
