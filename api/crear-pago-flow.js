@@ -92,17 +92,21 @@ export default async function handler(req, res) {
                 customerId = customer.customerId;
                 console.log('[crear-pago-flow] Cliente creado en Flow:', customerId);
             } else {
-                // 2c. Cliente ya existe en Flow — buscarlo por externalId
+                // 2c. Cliente ya existe en Flow — buscarlo por externalId con paginación
                 console.log('[crear-pago-flow] Paso 2c: customer/create falló, buscando cliente existente');
-                const lista = await flowGet('customer/list', {
-                    apiKey,
-                    filter: email,
-                    start:  0,
-                    limit:  25,
-                }, secret);
-                console.log('[crear-pago-flow] customer/list respuesta:', JSON.stringify(lista));
+                let start      = 0;
+                const limit    = 25;
+                let encontrado = null;
 
-                const encontrado = lista.data?.find(c => c.externalId === email);
+                while (!encontrado) {
+                    const lista = await flowGet('customer/list', { apiKey, start, limit }, secret);
+                    console.log(`[crear-pago-flow] customer/list (start=${start}) total=${lista.total} hasMore=${lista.hasMore} items=${lista.data?.length ?? 0}`);
+
+                    encontrado = lista.data?.find(c => c.externalId === email) ?? null;
+                    if (encontrado || !lista.hasMore) break;
+                    start += limit;
+                }
+
                 if (encontrado?.customerId) {
                     customerId = encontrado.customerId;
                     console.log('[crear-pago-flow] Cliente existente encontrado vía list:', customerId);
