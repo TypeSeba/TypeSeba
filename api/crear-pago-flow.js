@@ -33,8 +33,10 @@ export default async function handler(req, res) {
     const plan = PLANES[planId];
     if (!plan) return res.status(400).json({ error: 'Plan no válido' });
 
-    const apiKey = process.env.FLOW_API_KEY;
-    const secret = process.env.FLOW_SECRET;
+    const apiKey      = process.env.FLOW_API_KEY;
+    const secret      = process.env.FLOW_SECRET;
+    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
 
     try {
         // 1. Crear plan en Flow (ignorar si ya existe)
@@ -48,28 +50,56 @@ export default async function handler(req, res) {
             urlCallback: 'https://typeseba.com/api/confirmar-pago',
         }, secret).catch(() => {});
 
-        // 2. Crear cliente en Flow
-        const customer = await flowPost('customer/create', {
-            apiKey,
-            name:       nombre ?? email,
-            email,
-            externalId: email,
-        }, secret);
+        // 2. Obtener o crear cliente en Flow
+        let customerId;
 
-        if (!customer.customerId) {
-            return res.status(400).json({
-                error:   'No se pudo registrar el cliente en Flow.',
-                details: customer,
-            });
+        // Reutilizar si ya existe en Supabase (evita duplicados en Flow)
+        const dbRes = await fetch(
+            `${supabaseUrl}/rest/v1/perfiles?select=flow_customer_id&email=eq.${encodeURIComponent(email)}&order=created_at.desc&limit=1`,
+            { headers: { 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}` } }
+        );
+        const rows = await dbRes.json();
+
+        if (rows[0]?.flow_customer_id) {
+            customerId = rows[0].flow_customer_id;
+        } else {
+            const customer = await flowPost('customer/create', {
+                apiKey,
+                name:       nombre ?? email,
+                email,
+                externalId: email,
+            }, secret);
+
+            if (!customer.customerId) {
+                return res.status(400).json({
+                    error:   'No se pudo registrar el cliente en Flow.',
+                    details: customer,
+                });
+            }
+            customerId = customer.customerId;
+
+            // Guardar para no crear duplicados en el futuro
+            await fetch(
+                `${supabaseUrl}/rest/v1/perfiles?email=eq.${encodeURIComponent(email)}`,
+                {
+                    method: 'PATCH',
+                    headers: {
+                        'apikey':        supabaseKey,
+                        'Authorization': `Bearer ${supabaseKey}`,
+                        'Content-Type':  'application/json',
+                        'Prefer':        'return=minimal',
+                    },
+                    body: JSON.stringify({ flow_customer_id: customerId }),
+                }
+            );
         }
 
         // 3. Iniciar registro de tarjeta — redirige al usuario al formulario de Flow
-        //    Pasamos planId y email en url_return para recuperarlos en confirmar-registro
         const urlReturn = `https://typeseba.com/api/confirmar-registro?plan=${encodeURIComponent(planId)}&email=${encodeURIComponent(email)}`;
 
         const registro = await flowPost('customer/register', {
             apiKey,
-            customerId: customer.customerId,
+            customerId,
             url_return: urlReturn,
         }, secret);
 

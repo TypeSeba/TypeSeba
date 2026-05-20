@@ -332,6 +332,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const plan = MIS_PLANES[planSeleccionado];
         if (!plan) return;
 
+        const btn   = document.getElementById('btn-pagar-ahora');
+        const errEl = document.getElementById('pago-error');
+
+        btn.disabled        = true;
+        btn.textContent     = 'Procesando...';
+        errEl.style.display = 'none';
+
         try {
             const response = await fetch('/api/crear-pago-flow', {
                 method: 'POST',
@@ -340,12 +347,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     planId: plan.flowPlanId,
                     email:  emailTemporal,
                     nombre: nombreTemporal,
-                })
+                }),
             });
             const data = await response.json();
-            if (data.url) window.location.href = data.url;
-        } catch (err) {
-            console.error(err);
+
+            if (data.url) {
+                window.location.href = data.url;
+            } else {
+                errEl.textContent   = data.error || 'Hubo un error al procesar el pago. Intenta nuevamente.';
+                errEl.style.display = 'block';
+                btn.disabled        = false;
+                btn.textContent     = 'Pagar ahora para asegurar cupo';
+            }
+        } catch {
+            errEl.textContent   = 'No pudimos conectar con el servidor. Intenta nuevamente.';
+            errEl.style.display = 'block';
+            btn.disabled        = false;
+            btn.textContent     = 'Pagar ahora para asegurar cupo';
         }
     });
 });
