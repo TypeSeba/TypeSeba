@@ -62,7 +62,7 @@ export default async function handler(req, res) {
         console.log('[confirmar-registro] getRegisterStatus →', JSON.stringify(status));
 
         // status 1 = tarjeta registrada exitosamente
-        if (status.status !== 1) {
+        if (Number(status.status) !== 1) {
             console.log('[confirmar-registro] Tarjeta no registrada (status≠1) → redirigiendo a error:', errorPage);
             return res.redirect(302, errorPage);
         }
