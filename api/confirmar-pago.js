@@ -26,16 +26,25 @@ export default async function handler(req, res) {
         if (!flowRes.ok) return res.status(200).end();
 
         const payment = await flowRes.json();
+        console.log('[confirmar-pago] payment/getStatus →', JSON.stringify(payment));
 
         // status 2 = pagado confirmado
         if (payment.status !== 2) return res.status(200).end();
 
-        const email     = payment.payer;
-        const flowOrder = String(payment.flowOrder);
-        const plan      = payment.subject?.replace('Suscripción Plan ', '').trim() ?? 'desconocido';
+        const email          = payment.payer;
+        const subscriptionId = payment.subscriptionId;
+        const plan           = payment.subject?.replace('Suscripción Plan ', '').trim() ?? 'desconocido';
 
         const supabaseUrl = process.env.SUPABASE_URL;
         const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
+
+        const patch = {
+            plan_activo:  plan,
+            fecha_inicio: new Date().toISOString(),
+        };
+
+        // Solo sobreescribir flow_subscription_id si Flow devuelve uno válido
+        if (subscriptionId) patch.flow_subscription_id = subscriptionId;
 
         await fetch(
             `${supabaseUrl}/rest/v1/perfiles?email=eq.${encodeURIComponent(email)}`,
@@ -47,15 +56,11 @@ export default async function handler(req, res) {
                     'Content-Type':  'application/json',
                     'Prefer':        'return=minimal',
                 },
-                body: JSON.stringify({
-                    plan_activo:          plan,
-                    flow_subscription_id: flowOrder,
-                    fecha_inicio:         new Date().toISOString(),
-                }),
+                body: JSON.stringify(patch),
             }
         );
-    } catch {
-        // nunca devolver 5xx a Flow — reintentaría indefinidamente
+    } catch (err) {
+        console.error('[confirmar-pago] ERROR:', err);
     }
 
     return res.status(200).end();
