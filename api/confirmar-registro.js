@@ -68,12 +68,13 @@ export default async function handler(req, res) {
         }
 
         // 2. Crear suscripción en Flow
+        console.log('[confirmar-registro] Llamando subscription/create con customerId:', status.customerId);
         const subscription = await flowPost('subscription/create', {
             apiKey,
             planId:     `typeseba-${planId}`,
             customerId: status.customerId,
         }, secret);
-        console.log('[confirmar-registro] subscription/create →', JSON.stringify(subscription));
+        console.log('[confirmar-registro] Respuesta subscription/create:', JSON.stringify(subscription));
 
         // 3. Guardar en Supabase
         if (subscription.subscriptionId && email) {
@@ -101,8 +102,7 @@ export default async function handler(req, res) {
         }
 
     } catch (err) {
-        console.log('[confirmar-registro] ERROR en try:', err.message);
-        // no bloquear al usuario — redirigir igual
+        console.error('[confirmar-registro] ERROR:', err);
     }
 
     console.log('[confirmar-registro] Redirigiendo a:', thanksPage);
