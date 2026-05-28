@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
         errEl.style.display = 'none';
 
         try {
-            const res  = await fetch('/api/cancelar-suscripcion', {
+            const res  = await fetch('https://hcvyalkfuxrvowbleztr.supabase.co/functions/v1/cancelar-suscripcion', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email }),
@@ -340,7 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
         errEl.style.display = 'none';
 
         try {
-            const response = await fetch('/api/crear-pago-flow', {
+            const response = await fetch('https://hcvyalkfuxrvowbleztr.supabase.co/functions/v1/crear-pago-flow', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
