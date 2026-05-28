@@ -1,3 +1,8 @@
+const corsHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+};
+
 const PLANES: Record<string, { amount: number; nombre: string }> = {
     'growth-content':   { amount: 900000,  nombre: 'TypeSeba Growth Content' },
     'product-designer': { amount: 1700000, nombre: 'TypeSeba Product Designer' },
@@ -41,10 +46,11 @@ async function flowGet(endpoint: string, params: Record<string, string | number>
 const json = (body: unknown, status = 200) =>
     new Response(JSON.stringify(body), {
         status,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
 
 Deno.serve(async (req: Request) => {
+    if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders });
     if (req.method !== 'POST') return json({ message: 'Método no permitido' }, 405);
 
     const { planId, email, nombre } = await req.json();
