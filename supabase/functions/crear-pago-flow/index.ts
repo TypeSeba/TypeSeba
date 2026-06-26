@@ -151,7 +151,7 @@ Deno.serve(async (req: Request) => {
         }
 
         // 3. Iniciar registro de tarjeta
-        const urlReturn = `${supabaseUrl}/functions/v1/confirmar-registro?plan=${encodeURIComponent(planId)}&email=${encodeURIComponent(email)}`;
+        const urlReturn = `${supabaseUrl}/functions/v1/confirmar-registro?plan=${encodeURIComponent(planId)}&email=${encodeURIComponent(email)}&nombre=${encodeURIComponent(nombre ?? '')}`;
         console.log('[crear-pago-flow] Paso 3: customer/register, url_return →', urlReturn);
 
         const registro = await flowPost('customer/register', {
