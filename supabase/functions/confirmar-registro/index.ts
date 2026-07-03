@@ -13,7 +13,7 @@ async function sign(params: Record<string, string | number>, secret: string): Pr
 
 async function flowGet(endpoint: string, params: Record<string, string | number>, secret: string) {
     const s   = await sign(params, secret);
-    const url = new URL(`https://sandbox.flow.cl/api/${endpoint}`);
+    const url = new URL(`https://www.flow.cl/api/${endpoint}`);
     for (const key in params) url.searchParams.set(key, String(params[key]));
     url.searchParams.set('s', s);
     const res = await fetch(url.toString());
@@ -25,7 +25,7 @@ async function flowPost(endpoint: string, params: Record<string, string | number
     const formData = new URLSearchParams();
     for (const key in params) formData.append(key, String(params[key]));
     formData.append('s', s);
-    const res = await fetch(`https://sandbox.flow.cl/api/${endpoint}`, {
+    const res = await fetch(`https://www.flow.cl/api/${endpoint}`, {
         method: 'POST',
         body: formData,
     });
@@ -45,7 +45,6 @@ Deno.serve(async (req: Request) => {
     const reqUrl = new URL(req.url);
     const planId = reqUrl.searchParams.get('plan');
     const email  = reqUrl.searchParams.get('email');
-    const nombre = reqUrl.searchParams.get('nombre') ?? '';
 
     // token puede venir en query string (redirect GET de Flow) o en body POST
     let token: string | null = reqUrl.searchParams.get('token');
@@ -123,34 +122,6 @@ Deno.serve(async (req: Request) => {
                 }
             );
             console.log('[confirmar-registro] Supabase PATCH status:', patchRes.status);
-
-            const TEMPLATES: Record<string, string> = {
-                'growth-content':   '77b94220-5690-4441-a5df-bbbbe83ea638',
-                'product-designer': 'abbc1552-bc0d-4cfd-9abc-e65616e79ad1',
-                'tech-partner':     'b1697580-4695-4cbe-9fd9-d9cc38a5f013',
-            };
-            const templateId = TEMPLATES[planId ?? ''];
-            if (templateId) {
-                try {
-                    const resendRes = await fetch('https://api.resend.com/emails', {
-                        method: 'POST',
-                        headers: {
-                            'Authorization': `Bearer ${Deno.env.get('RESEND_API_KEY')}`,
-                            'Content-Type':  'application/json',
-                        },
-                        body: JSON.stringify({
-                            from:        'TypeSeba <contact@typeseba.com>',
-                            to:          [{ email, name: nombre }],
-                            subject:     'Bienvenido a bordo — tu suscripción está activa',
-                            template_id: templateId,
-                            variables:   { Nombre: nombre },
-                        }),
-                    });
-                    console.log('[confirmar-registro] Resend status:', resendRes.status);
-                } catch (resendErr) {
-                    console.error('[confirmar-registro] Resend ERROR:', resendErr);
-                }
-            }
         }
 
     } catch (err) {

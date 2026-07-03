@@ -471,8 +471,7 @@
                         </div>
                     </div>
 
-                    <button class="btn-primary btn-plan-primary" onclick="iniciarSuscripcion('growth_content')">Elegir
-                        Growth</button>
+                    <a href="contact.html" class="btn-primary btn-plan-primary">Contratar plan</a>
                 </div>
 
                 <!-- Product Designer (Center) -->
@@ -532,7 +531,7 @@
                             </ul>
                         </div>
                     </div>
-                    <button class="btn-primary" onclick="iniciarSuscripcion('product_build')">Elegir Product</button>
+                    <a href="contact.html" class="btn-primary">Contratar plan</a>
                 </div>
 
                 <!-- Growth Content Plan (Right) -->
@@ -592,8 +591,7 @@
                             </ul>
                         </div>
                     </div>
-                    <button class="btn-primary btn-plan-primary" onclick="iniciarSuscripcion('tech_dev')">Aplicar (Solo
-                        2 Cupos)</button>
+                    <a href="contact.html" class="btn-primary btn-plan-primary">Contratar plan</a>
                 </div>
             </div>
 
@@ -862,45 +860,6 @@
             <div id="cancelacion-gracias" style="display: none;">
                 <h2>Solicitud recibida</h2>
                 <p>Hemos registrado tu solicitud de cancelación. Recibirás un correo de confirmación en breve. Tu plan permanecerá activo hasta el fin del período pagado.</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-contacto" class="modal-overlay">
-        <div class="modal-content fade-in-up">
-            <button id="close-modal" class="close-btn" aria-label="Cerrar">&times;</button>
-
-            <div id="paso-formulario">
-                <h2>Cuéntanos sobre tu proyecto</h2>
-                <p>Para brindarte un servicio exclusivo, necesitamos conocerte mejor.</p>
-                <form id="form-prospecto">
-                    <div class="input-row">
-                        <input type="text" id="p-nombre" placeholder="Nombre" required>
-                        <input type="text" id="p-apellido" placeholder="Apellido" required>
-                    </div>
-                    <input type="text" id="p-empresa" placeholder="Nombre de tu empresa / Startup" required>
-                    <select id="p-tipo" required>
-                        <option value="" disabled selected>¿Qué perfil tienes?</option>
-                        <option value="particular">Particular / Freelance</option>
-                        <option value="startup">Founder / Startup</option>
-                        <option value="agencia">Agencia</option>
-                        <option value="empresa">Micro / Pequeña Empresa</option>
-                    </select>
-                    <input type="email" id="p-email" placeholder="Correo electrónico" required>
-                    <input type="tel" id="p-whatsapp" placeholder="WhatsApp (ej: +569...)" required>
-                    <button type="submit" class="btn-modal-enviar">Enviar información</button>
-                </form>
-            </div>
-
-            <div id="paso-gracias" style="display: none;">
-                <h2>¡Gracias por tu interés!</h2>
-                <p>Hemos recibido tus datos. En breve nos pondremos en contacto contigo vía WhatsApp o correo para
-                    coordinar los detalles.</p>
-                <div class="opciones-finales">
-                    <button id="btn-pagar-ahora" class="btn-modal-enviar">Pagar ahora para asegurar cupo</button>
-                    <p class="nota-pago">Si prefieres esperar nuestra llamada, puedes cerrar esta ventana.</p>
-                    <p id="pago-error" style="display:none; color:#e53e3e; margin-top:12px; font-size:0.9rem;"></p>
-                </div>
             </div>
         </div>
     </div>

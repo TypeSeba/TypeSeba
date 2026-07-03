@@ -4,9 +4,9 @@ const corsHeaders = {
 };
 
 const PLANES: Record<string, { amount: number; nombre: string }> = {
-    'growth-content':   { amount: 900000,  nombre: 'TypeSeba Growth Content' },
-    'product-designer': { amount: 1700000, nombre: 'TypeSeba Product Designer' },
-    'tech-partner':     { amount: 2700000, nombre: 'TypeSeba Tech Partner' },
+    'growth-content':   { amount: 350, nombre: 'TypeSeba Growth Content' },
+    'product-designer': { amount: 350, nombre: 'TypeSeba Product Designer' },
+    'tech-partner':     { amount: 350, nombre: 'TypeSeba Tech Partner' },
 };
 
 async function sign(params: Record<string, string | number>, secret: string): Promise<string> {
@@ -27,7 +27,7 @@ async function flowPost(endpoint: string, params: Record<string, string | number
     const formData = new URLSearchParams();
     for (const key in params) formData.append(key, String(params[key]));
     formData.append('s', s);
-    const res = await fetch(`https://sandbox.flow.cl/api/${endpoint}`, {
+    const res = await fetch(`https://www.flow.cl/api/${endpoint}`, {
         method: 'POST',
         body: formData,
     });
@@ -36,7 +36,7 @@ async function flowPost(endpoint: string, params: Record<string, string | number
 
 async function flowGet(endpoint: string, params: Record<string, string | number>, secret: string) {
     const s   = await sign(params, secret);
-    const url = new URL(`https://sandbox.flow.cl/api/${endpoint}`);
+    const url = new URL(`https://www.flow.cl/api/${endpoint}`);
     for (const key in params) url.searchParams.set(key, String(params[key]));
     url.searchParams.set('s', s);
     const res = await fetch(url.toString());
@@ -160,6 +160,7 @@ Deno.serve(async (req: Request) => {
             url_return: urlReturn,
         }, secret);
         console.log('[crear-pago-flow] customer/register respuesta:', JSON.stringify(registro));
+        console.log('[Flow register response]', JSON.stringify(registro));
 
         if (!registro.url || !registro.token) {
             console.log('[crear-pago-flow] ERROR: customer/register no devolvió url/token');

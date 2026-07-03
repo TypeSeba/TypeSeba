@@ -7,47 +7,7 @@ if (window.supabase) {
     });
 }
 
-// CONFIGURACIÓN DE PLANES
-const MIS_PLANES = {
-    growth_content: { id: "growth_content", flowPlanId: "growth-content" },
-    product_build: { id: "product_build", flowPlanId: "product-designer" },
-    tech_dev: { id: "tech_dev", flowPlanId: "tech-partner" }
-};
-
-let planSeleccionado = '';
-let emailTemporal    = '';
-let nombreTemporal   = '';
 let lenis; // Declaración global
-
-// Funciones de utilidad para el modal
-function iniciarSuscripcion(planKey) {
-    planSeleccionado = planKey;
-    const modal = document.getElementById('modal-contacto');
-    if (modal) modal.style.display = 'flex';
-    if (lenis) lenis.stop();
-}
-
-function cerrarModal() {
-    const modal = document.getElementById('modal-contacto');
-    if (modal) modal.style.display = 'none';
-    if (lenis) lenis.start();
-
-    const pasoForm = document.getElementById('paso-formulario');
-    const pasoGracias = document.getElementById('paso-gracias');
-    if (pasoForm) pasoForm.style.display = '';
-    if (pasoGracias) pasoGracias.style.display = 'none';
-
-    const formProspecto = document.getElementById('form-prospecto');
-    if (formProspecto) {
-        formProspecto.reset();
-        const btnEnviar = formProspecto.querySelector('.btn-modal-enviar');
-        if (btnEnviar) { btnEnviar.textContent = 'Enviar información'; btnEnviar.disabled = false; }
-        const errEl = formProspecto.querySelector('.modal-form-error');
-        if (errEl) errEl.textContent = '';
-    }
-    emailTemporal  = '';
-    nombreTemporal = '';
-}
 
 // --- INICIALIZACIÓN DE LENIS (CON SEGURIDAD) ---
 try {
@@ -201,78 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Listener Formulario Prospecto (Pop-up)
-    const formProspecto = document.getElementById('form-prospecto');
-    if (formProspecto) {
-        formProspecto.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const btnEnviar = formProspecto.querySelector('.btn-modal-enviar');
-
-            function mostrarErrorModal(msg) {
-                let errEl = formProspecto.querySelector('.modal-form-error');
-                if (!errEl) {
-                    errEl = document.createElement('p');
-                    errEl.className = 'modal-form-error';
-                    errEl.style.cssText = 'color:#e53e3e;font-size:.875rem;margin:.75rem 0 0;text-align:center;';
-                    btnEnviar.insertAdjacentElement('afterend', errEl);
-                }
-                errEl.textContent = msg;
-            }
-
-            console.log('[Modal] Submit disparado. window._supabase:', !!window._supabase, '| planSeleccionado:', planSeleccionado);
-
-            if (!window._supabase) {
-                mostrarErrorModal('No se pudo conectar. Por favor recarga la página e intenta de nuevo.');
-                return;
-            }
-
-            const errEl = formProspecto.querySelector('.modal-form-error');
-            if (errEl) errEl.textContent = '';
-            btnEnviar.textContent = 'Enviando...';
-            btnEnviar.disabled = true;
-
-            emailTemporal  = document.getElementById('p-email').value;
-            nombreTemporal = document.getElementById('p-nombre').value;
-            const datos = {
-                nombre: document.getElementById('p-nombre').value,
-                apellido: document.getElementById('p-apellido').value,
-                empresa: document.getElementById('p-empresa').value,
-                tipo_cliente: document.getElementById('p-tipo').value,
-                email: emailTemporal,
-                telefono: document.getElementById('p-whatsapp').value,
-                plan_interes: planSeleccionado
-            };
-
-            console.log('[Modal] Datos a insertar:', datos);
-            console.log('[Modal] Llamando a Supabase insert...');
-            console.log('[Modal] Supabase headers:', window._supabase.rest?.headers);
-
-            const { data: insertData, error } = await window._supabase.from('perfiles').insert([datos]);
-
-            console.log('[Modal] Respuesta Supabase → data:', insertData, '| error:', error);
-
-            if (!error) {
-                document.getElementById('paso-formulario').style.display = 'none';
-                document.getElementById('paso-gracias').style.display = 'block';
-                fetch('https://hcvyalkfuxrvowbleztr.supabase.co/functions/v1/notify-prospecto', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjdnlhbGtmdXhydm93YmxlenRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MjA5MjYsImV4cCI6MjA4NTI5NjkyNn0.uf0bZfjp2n1RM6h4XKxQZDXUI51C3_24kFiIbdXD_aQ' },
-                    body: JSON.stringify(datos)
-                }).catch(err => console.error('[notify-prospecto]', err));
-            } else {
-                console.error('[Modal] Error completo:', JSON.stringify(error, null, 2));
-                mostrarErrorModal('Hubo un problema al enviar tus datos. Por favor intenta de nuevo.');
-                btnEnviar.textContent = 'Enviar información';
-                btnEnviar.disabled = false;
-            }
-        });
-    }
-
-    // 4. Otros listeners
-    document.getElementById('close-modal')?.addEventListener('click', cerrarModal);
-
-    // Modal cancelación
+    // 3. Modal cancelación
     document.getElementById('btn-cancelar-suscripcion')?.addEventListener('click', (e) => {
         e.preventDefault();
         document.getElementById('modal-cancelacion').style.display = 'flex';
@@ -326,45 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (m) m.style.display = 'flex';
     }
 
-    document.getElementById('btn-pagar-ahora')?.addEventListener('click', async () => {
-        if (!emailTemporal || !planSeleccionado) return;
-        const plan = MIS_PLANES[planSeleccionado];
-        if (!plan) return;
-
-        const btn   = document.getElementById('btn-pagar-ahora');
-        const errEl = document.getElementById('pago-error');
-
-        btn.disabled        = true;
-        btn.textContent     = 'Procesando...';
-        errEl.style.display = 'none';
-
-        try {
-            const response = await fetch('https://hcvyalkfuxrvowbleztr.supabase.co/functions/v1/crear-pago-flow', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    planId: plan.flowPlanId,
-                    email:  emailTemporal,
-                    nombre: nombreTemporal,
-                }),
-            });
-            const data = await response.json();
-
-            if (data.url) {
-                window.location.href = data.url;
-            } else {
-                errEl.textContent   = data.error || 'Hubo un error al procesar el pago. Intenta nuevamente.';
-                errEl.style.display = 'block';
-                btn.disabled        = false;
-                btn.textContent     = 'Pagar ahora para asegurar cupo';
-            }
-        } catch {
-            errEl.textContent   = 'No pudimos conectar con el servidor. Intenta nuevamente.';
-            errEl.style.display = 'block';
-            btn.disabled        = false;
-            btn.textContent     = 'Pagar ahora para asegurar cupo';
-        }
-    });
 });
 
 // --- ANIMACIONES Y EFECTOS (RESTO DEL CÓDIGO) ---
