@@ -47,11 +47,11 @@
                     Es <span class="typewriter-text"></span><span class="typewriter-cursor">|</span>
                 </h1>
                 <p class="hero-description">
-                    La potencia de un equipo creativo senior, condensada en una suscripción mensual.
+                    La potencia de un equipo creativo senior, al servicio de tu proyecto.
                 </p>
 
                 <div class="hero-buttons">
-                    <a href="#pricing-section" class="btn-primary">Ver Planes</a>
+                    <a href="contact.html" class="btn-primary">Cotiza tu proyecto</a>
                     <a href="#portfolio-section" class="btn-secondary">Ver Trabajos</a>
                 </div>
             </div>
@@ -98,20 +98,20 @@
                     </div>
                 </div>
 
-                <!-- Card 2 - Valores -->
+                <!-- Card 2 - Presupuesto -->
                 <div class="studio-card scale-in">
                     <div class="card-content">
                         <div class="card-text">
-                            <h3 class="heading3-title">Valores competitivos</h3>
+                            <h3 class="heading3-title">Presupuesto por proyecto</h3>
                             <p class="card-description">
-                                Tenemos planes que se adaptan a tus necesidades, para que pages lo justo por lo que
-                                quieres, Si deseas construir un proyecto más grande, no dudes en contactarnos.
+                                Cada proyecto tiene un presupuesto claro y acordado desde el inicio. Sin sorpresas,
+                                sin cargos extra. Sabes exactamente lo que pagas y lo que recibes.
                             </p>
                         </div>
 
                         <div class="spacer-12"></div>
 
-                        <a href="#pricing-section" class="card-arrow" aria-label="Ver valores y planes">
+                        <a href="contact.html" class="card-arrow" aria-label="Cotiza tu proyecto">
                             <svg width="45" height="45" fill="none" viewBox="0 0 45 45"
                                 style="border-radius: 8px !important;">
                                 <rect fill="var(--brand-primary)" height="45" width="45" />
@@ -395,8 +395,8 @@
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section class="pricing-section" id="pricing-section" data-navbar-dark="true">
+    <!-- PRICING SECTION OCULTA [2026-07-11] — pivot modelo suscripción → proyecto -->
+    <section class="pricing-section" id="pricing-section" data-navbar-dark="true" style="display:none">
         <div class="container">
             <div class="section-header fade-in-up">
                 <h2 class="section-title">Planes flexibles</h2>
@@ -471,7 +471,7 @@
                         </div>
                     </div>
 
-                    <a href="contact.html" class="btn-primary btn-plan-primary">Contratar plan</a>
+                    <a href="contact.html?plan=Growth" class="btn-primary btn-plan-primary">Contratar plan</a>
                 </div>
 
                 <!-- Product Designer (Center) -->
@@ -531,7 +531,7 @@
                             </ul>
                         </div>
                     </div>
-                    <a href="contact.html" class="btn-primary">Contratar plan</a>
+                    <a href="contact.html?plan=Product" class="btn-primary">Contratar plan</a>
                 </div>
 
                 <!-- Growth Content Plan (Right) -->
@@ -591,7 +591,7 @@
                             </ul>
                         </div>
                     </div>
-                    <a href="contact.html" class="btn-primary btn-plan-primary">Contratar plan</a>
+                    <a href="contact.html?plan=Tech+Partner" class="btn-primary btn-plan-primary">Contratar plan</a>
                 </div>
             </div>
 
@@ -621,9 +621,8 @@
                         ¿Necesitas una App o una producción compleja?
                     </h2>
                     <p class="complex-description">
-                        La suscripción es para iteración y velocidad. Para proyectos de gran envergadura (Apps
-                        completas,
-                        Rodajes, Cine 3D), operamos bajo presupuesto fijo.
+                        Para proyectos de gran envergadura (Apps completas, Rodajes, Cine 3D), trabajamos bajo
+                        presupuesto fijo acordado desde el inicio.
                     </p>
                 </div>
                 <a href="contact.html" class="btn-primary">Cotizar</a>
@@ -632,8 +631,8 @@
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="faq-section" id="faq-section" data-navbar-dark="true">
+    <!-- FAQ SECTION OCULTA [2026-07-11] — preguntas orientadas a suscripción, pendiente reescritura -->
+    <section class="faq-section" id="faq-section" data-navbar-dark="true" style="display:none">
         <div class="container">
             <div class="section-header fade-in-up">
                 <h2 class="section-title">FAQ</h2>
@@ -813,10 +812,8 @@
                 </div>
 
                 <div class="footer-links">
-                    <a href="index.html#pricing-section">Valores</a>
                     <a href="index.html#services-section">Servicios</a>
                     <a href="index.html#portfolio-section">Proyectos</a>
-                    <a href="index.html#faq-section">FAQ</a>
                     <a href="contact.html">Contacto</a>
                 </div>
 
@@ -838,35 +835,11 @@
                 <a href="privacy.html">Política de Privacidad</a>
                 <a href="terms.html">Términos de Servicio</a>
                 <a href="cookies.html">Política de Cookies</a>
-                <a href="#" id="btn-cancelar-suscripcion">Cancelar suscripción</a>
             </div>
         </div>
     </footer>
 
-    <div id="modal-cancelacion" class="modal-overlay">
-        <div class="modal-content fade-in-up">
-            <button id="close-modal-cancelacion" class="close-btn" aria-label="Cerrar">&times;</button>
-
-            <div id="cancelacion-formulario">
-                <h2>Cancelar suscripción</h2>
-                <p>Ingresa el correo con el que te suscribiste. Procesaremos tu cancelación en un plazo máximo de 3 horas hábiles. Tu plan seguirá activo hasta el fin del período pagado.</p>
-                <form id="form-cancelacion">
-                    <input type="email" id="c-email" placeholder="Correo electrónico" required>
-                    <button type="submit" class="btn-modal-enviar">Solicitar cancelación</button>
-                </form>
-                <p id="cancelacion-error" style="display:none; color:#e53e3e; margin-top:12px; font-size:0.9rem;"></p>
-            </div>
-
-            <div id="cancelacion-gracias" style="display: none;">
-                <h2>Solicitud recibida</h2>
-                <p>Hemos registrado tu solicitud de cancelación. Recibirás un correo de confirmación en breve. Tu plan permanecerá activo hasta el fin del período pagado.</p>
-            </div>
-        </div>
-    </div>
-
     <script src="https://cdn.jsdelivr.net/npm/lenis@latest/dist/lenis.min.js" defer></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.min.js"></script>
 
     <script src="script.js" defer></script>
 

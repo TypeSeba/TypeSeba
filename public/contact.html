@@ -39,9 +39,9 @@
         <div class="hero-content">
             <div class="container">
                 <div class="hero-text fade-in-up">
-                    <h1 class="hero-title-contact">¿Alguna duda?</h1>
+                    <h1 class="hero-title-contact">Cotiza tu proyecto.</h1>
                     <p class="hero-description-contact">
-                        Puedes escribir cualquier duda que tengas, te respondere lo antes posible.
+                        Cuéntame qué estás construyendo. Te respondo rápido y sin vueltas.
                     </p>
                 </div>
             </div>
@@ -54,8 +54,8 @@
             <div class="section-header fade-in-up">
                 <h2 class="section-title">¿Cómo te puedo ayudar?</h2>
                 <p class="section-description">
-                    Si tienes dudas con algún servicio, si quieres aclarar los valores, si quieres cotizar otro tipo de
-                    proyecto, para lo que necesites no dudes en preguntar.
+                    Cuéntame tu idea, el tipo de proyecto y tu presupuesto aproximado.
+                    Armo una propuesta personalizada y te respondo en menos de 24 horas.
                 </p>
             </div>
 
@@ -68,6 +68,30 @@
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" class="form-input" placeholder="Email">
+                </div>
+
+                <div class="form-group">
+                    <label for="tipo_proyecto">Tipo de proyecto</label>
+                    <select id="tipo_proyecto" name="tipo_proyecto" class="form-input">
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="Sitio web">Sitio web</option>
+                        <option value="Producto digital / app">Producto digital / app</option>
+                        <option value="Branding y diseño">Branding y diseño</option>
+                        <option value="Motion / contenido">Motion / contenido</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="presupuesto">Presupuesto aproximado</label>
+                    <select id="presupuesto" name="presupuesto" class="form-input">
+                        <option value="" disabled selected>Selecciona un rango</option>
+                        <option value="Menos de $500.000">Menos de $500.000</option>
+                        <option value="$500.000 - $1.000.000">$500.000 - $1.000.000</option>
+                        <option value="$1.000.000 - $2.000.000">$1.000.000 - $2.000.000</option>
+                        <option value="Más de $2.000.000">Más de $2.000.000</option>
+                        <option value="Prefiero conversarlo">Prefiero conversarlo</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -132,10 +156,8 @@
                 </div>
 
                 <div class="footer-links">
-                    <a href="index.html#pricing-section">Valores</a>
                     <a href="index.html#services-section">Servicios</a>
                     <a href="index.html#portfolio-section">Proyectos</a>
-                    <a href="index.html#faq-section">FAQ</a>
                     <a href="contact.html">Contacto</a>
                 </div>
 
@@ -156,11 +178,19 @@
                 <a href="privacy.html">Política de Privacidad</a>
                 <a href="terms.html">Términos de Servicio</a>
                 <a href="cookies.html">Política de Cookies</a>
-                <a href="index.html?cancelar=1">Cancelar suscripción</a>
             </div>
         </div>
     </footer>
 
+    <script>
+        const plan = new URLSearchParams(window.location.search).get('plan');
+        if (plan) {
+            document.addEventListener('DOMContentLoaded', () => {
+                const campo = document.getElementById('mensaje');
+                if (campo) campo.value = `Hola, me interesa contratar el plan ${plan}.`;
+            });
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/lenis@latest/dist/lenis.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
     <script src="script.js" defer></script>

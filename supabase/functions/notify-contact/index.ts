@@ -4,7 +4,7 @@ serve(async (req: Request) => {
   const payload = await req.json();
 
   // Supabase Database Webhooks send the new row under payload.record
-  const { nombre, email, mensaje } = payload.record ?? {};
+  const { nombre, email, tipo_proyecto, presupuesto, mensaje } = payload.record ?? {};
 
   const resendApiKey = Deno.env.get('RESEND_API_KEY');
   if (!resendApiKey) {
@@ -21,7 +21,7 @@ serve(async (req: Request) => {
       from: 'contact@typeseba.com',
       to: ['contact@typeseba.com'],
       subject: 'Nueva consulta desde TypeSeba',
-      text: `Nombre: ${nombre}\nEmail: ${email}\nMensaje: ${mensaje}`,
+      text: `Nombre: ${nombre}\nEmail: ${email}\nTipo de proyecto: ${tipo_proyecto ?? 'No especificado'}\nPresupuesto: ${presupuesto ?? 'No especificado'}\nMensaje: ${mensaje}`,
     }),
   });
 

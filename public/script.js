@@ -137,6 +137,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const datos = {
                 nombre: document.getElementById('nombre').value,
                 email: document.getElementById('email').value,
+                tipo_proyecto: document.getElementById('tipo_proyecto')?.value || null,
+                presupuesto: document.getElementById('presupuesto')?.value || null,
                 mensaje: document.getElementById('mensaje').value
             };
 
@@ -159,60 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 btnSubmit.disabled = false;
             }
         });
-    }
-
-    // 3. Modal cancelación
-    document.getElementById('btn-cancelar-suscripcion')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        document.getElementById('modal-cancelacion').style.display = 'flex';
-    });
-
-    document.getElementById('close-modal-cancelacion')?.addEventListener('click', () => {
-        document.getElementById('modal-cancelacion').style.display = 'none';
-    });
-
-    document.getElementById('modal-cancelacion')?.addEventListener('click', (e) => {
-        if (e.target === e.currentTarget) e.currentTarget.style.display = 'none';
-    });
-
-    document.getElementById('form-cancelacion')?.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const email  = document.getElementById('c-email').value.trim();
-        const btn    = e.target.querySelector('.btn-modal-enviar');
-        const errEl  = document.getElementById('cancelacion-error');
-
-        btn.disabled        = true;
-        btn.textContent     = 'Procesando...';
-        errEl.style.display = 'none';
-
-        try {
-            const res  = await fetch('https://hcvyalkfuxrvowbleztr.supabase.co/functions/v1/cancelar-suscripcion', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email }),
-            });
-            const data = await res.json();
-
-            if (res.ok && data.success) {
-                document.getElementById('cancelacion-formulario').style.display = 'none';
-                document.getElementById('cancelacion-gracias').style.display    = 'block';
-            } else {
-                errEl.textContent   = data.error || 'Hubo un error. Por favor intenta nuevamente.';
-                errEl.style.display = 'block';
-                btn.disabled        = false;
-                btn.textContent     = 'Solicitar cancelación';
-            }
-        } catch {
-            errEl.textContent   = 'No pudimos conectar con el servidor. Intenta nuevamente.';
-            errEl.style.display = 'block';
-            btn.disabled        = false;
-            btn.textContent     = 'Solicitar cancelación';
-        }
-    });
-
-    if (new URLSearchParams(window.location.search).get('cancelar') === '1') {
-        const m = document.getElementById('modal-cancelacion');
-        if (m) m.style.display = 'flex';
     }
 
 });
