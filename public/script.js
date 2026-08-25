@@ -207,7 +207,7 @@ faqQuestions.forEach(question => {
 });
 
 // Typewriter
-const words = ["las prototipo con IA.", "las llevo a producción."];
+const words = ["Interfaces.", "Productos.", "Vibe coding."];
 let typeIndex = 0;
 let typeTimer;
 
