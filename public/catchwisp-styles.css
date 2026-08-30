@@ -69,7 +69,6 @@
 .cw-image-full img {
     width: 100%;
     height: auto;
-    max-height: 729px;
     object-fit: cover;
     display: block;
 }
@@ -184,7 +183,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     gap: var(--spacing-xl);
     flex-wrap: wrap;
 }
