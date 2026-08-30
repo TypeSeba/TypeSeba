@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeSeba | Catchwisp Portfolio</title>
+    <meta name="description"
+        content="Caso de estudio: Catchwisp, app de captura rápida de tareas e ideas. Marca, sistema de diseño y producto completo.">
+    <meta property="og:title" content="Catchwisp — TypeSeba">
+    <meta property="og:description"
+        content="Catch it before it's gone. Marca, producto y código de Catchwisp por TypeSeba.">
+    <meta property="og:image" content="img/og-image.jpg">
+    <meta property="og:url" content="https://www.typeseba.com/catchwisp.html">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="catchwisp-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="img/Favicon.svg">
+</head>
+
+<body>
+    <!-- Hero Section with Navbar -->
+    <section class="cw-hero">
+        <div class="cw-hero-bg"></div>
+
+        <!-- Navbar -->
+        <div id="navbar-placeholder"></div>
+
+        <!-- Hero Content -->
+        <div class="cw-hero-content">
+            <div class="container">
+                <div class="fade-in-up">
+                    <h1 class="cw-hero-title">catchwisp</h1>
+                    <p class="cw-hero-subtitle">Catch it before it's gone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview / Project Meta -->
+    <section class="section bg-white" data-navbar-dark="true"
+        style="padding-top: var(--spacing-2xl); padding-bottom: var(--spacing-2xl);">
+        <div class="container">
+            <div class="fade-in-up">
+                <p class="cw-overline">el Impacto</p>
+                <h2 class="cw-heading2" style="max-width: 950px;">
+                    Una <span class="text-dark">app de captura rápida</span> para tareas e ideas.<br>
+                    <span class="text-dark">Diseñé la marca, el sistema de diseño y el producto completo</span>,
+                    hasta llevarlo a <span class="text-dark">producción</span>.
+                </h2>
+                <div class="cw-meta">
+                    <div class="cw-meta-row"><span>Año</span><span>2026</span></div>
+                    <div class="cw-meta-row"><span>Tipo</span><span>producto</span></div>
+                    <div class="cw-meta-row"><span>herramientas</span><span>figma / react / Tailwind / Vercel</span></div>
+                    <div class="cw-meta-row"><span>estado</span><span>en producción</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="section bg-white" data-navbar-dark="true"
+        style="padding-top: var(--spacing-2xl); padding-bottom: var(--spacing-2xl);">
+        <div class="container">
+            <div class="cw-section-title fade-in-up" style="display: flex; margin-bottom: var(--spacing-xl);">
+                <p class="cw-overline">El problema</p>
+                <div class="cw-grid-2">
+                    <h2 class="cw-heading2">Las ideas se pierden en el cambio de contexto.</h2>
+                    <p class="cw-body">Estoy trabajando en una cosa y aparece otra: un pendiente, una idea, algo
+                        que tengo que revisar después. Si no la escribo en ese segundo, se va.<br><br>
+                        El problema no es la falta de apps. Es que todas piden demasiado antes de dejarte
+                        escribir: abrir, elegir una carpeta, ponerle título, asignar una etiqueta. Para cuando
+                        terminas ese proceso, ya perdiste el hilo de lo que estabas haciendo — y a veces también
+                        la idea.</p>
+                </div>
+            </div>
+            <div class="cw-image-placeholder fade-in-up">
+                <img src="img/catchwisp-content-problem.png" alt="Catchwisp — El problema" loading="lazy"
+                    onerror="this.parentElement.textContent='img/catchwisp-content-problem.png'">
+            </div>
+        </div>
+    </section>
+
+    <!-- Hypothesis -->
+    <section class="section bg-white" data-navbar-dark="true"
+        style="padding-top: var(--spacing-2xl); padding-bottom: var(--spacing-2xl);">
+        <div class="container">
+            <div class="cw-grid-2 fade-in-up">
+                <div>
+                    <p class="cw-overline">la hipótesis</p>
+                    <h2 class="cw-heading2 mb-32">¿Y si la app solo hiciera una cosa bien?</h2>
+                    <p class="cw-body">
+                        <strong>Partí de una restricción:</strong> si la captura no ocurre en menos de tres
+                        segundos, la app falló.<br><br>
+                        Eso descartó casi todo lo que una app de notas suele tener.
+                        <strong>Sin carpetas, sin etiquetas, sin títulos, sin editor de texto enriquecido.</strong>
+                        <br><br>
+                        <strong>Solo dos listas:</strong><br><br>
+                        <strong>Hacer</strong> — lo que tengo que hacer<br>
+                        <strong>Pensar</strong> — lo que tengo que pensar o revisar<br><br>
+                        Esa separación <strong>resuelve el 90%</strong> de lo que capturo en el día. Un pendiente
+                        accionable y una idea sin resolver no son lo mismo, y mezclarlos es lo que hace que las
+                        listas se vuelvan ruido.
+                    </p>
+                </div>
+                <div class="cw-image-placeholder" style="min-height: 729px;">
+                    <img src="img/catchwisp-content-hypothesis.png" alt="Catchwisp — La hipótesis" loading="lazy"
+                        onerror="this.parentElement.textContent='img/catchwisp-content-hypothesis.png'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Branding -->
+    <section class="section bg-white" data-navbar-dark="true"
+        style="padding-top: var(--spacing-2xl); padding-bottom: var(--spacing-2xl);">
+        <div class="container">
+            <div class="cw-grid-2 fade-in-up" style="margin-bottom: var(--spacing-xl);">
+                <div class="cw-brand-icon-wrap">
+                    <img class="cw-bg-photo" src="img/catchwisp-content-brand-icon.png" alt="Catchwisp brand"
+                        loading="lazy" onerror="this.style.display='none'">
+                    <div class="cw-brand-app-icon">
+                        <img src="img/catchwisp-app-icon-glyph.svg" alt="" loading="lazy"
+                            onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div>
+                    <p class="cw-overline">brand</p>
+                    <h2 class="cw-heading2 mb-32">De Catch a catchwisp</h2>
+                    <p class="cw-body">El nombre original era Catch. Directo, pero imposible de registrar y sin
+                        dominio disponible. Sumé "wisp" (algo tenue, que se desvanece) porque describe exactamente
+                        lo que la app intenta atrapar: <strong>la idea antes de que se vaya.</strong><br><br>
+                        <strong>Wordmark:</strong> Probé varias tipografías antes de llegar a Baloo. Es
+                        geométrica sin ser fría, y en minúscula el conjunto se lee compacto, como una nota rápida
+                        y no como un logo corporativo.</p>
+                </div>
+            </div>
+
+            <div class="cw-image-full fade-in-up" style="margin-bottom: var(--spacing-xl);">
+                <div class="cw-image-placeholder">
+                    <img src="img/catchwisp-content-brand-wide.png" alt="Catchwisp wordmark" loading="lazy"
+                        onerror="this.parentElement.textContent='img/catchwisp-content-brand-wide.png'">
+                </div>
+            </div>
+
+            <div class="cw-image-full fade-in-up" style="margin-bottom: var(--spacing-xl);">
+                <div class="cw-image-placeholder" style="min-height: 320px;">
+                    <img src="img/catchwisp-brand-swatch.png" alt="Catchwisp brand swatch" loading="lazy"
+                        onerror="this.parentElement.textContent='img/catchwisp-brand-swatch.png'">
+                </div>
+            </div>
+
+            <div class="cw-swatch-row fade-in-up" style="margin-bottom: var(--spacing-xl);">
+                <div class="cw-swatch" style="background:#1c1c1c;">
+                    <p class="cw-swatch-name">Onix</p>
+                    <p class="cw-swatch-hex">HEX = 0F0F0F</p>
+                </div>
+                <div class="cw-swatch" style="background:#8b8b8b;">
+                    <p class="cw-swatch-name">Grey Olive</p>
+                    <p class="cw-swatch-hex">HEX = 8B8B8B</p>
+                </div>
+                <div class="cw-swatch" style="background:#e8320c;">
+                    <p class="cw-swatch-name">Electric Red</p>
+                    <p class="cw-swatch-hex">HEX = FB3321</p>
+                </div>
+                <div class="cw-swatch" style="background:#f5f5f5; color: var(--text-title);">
+                    <p class="cw-swatch-name">White Smoke</p>
+                    <p class="cw-swatch-hex">HEX = F5F5F5</p>
+                </div>
+                <div class="cw-swatch" style="background:#3e3e3e;">
+                    <p class="cw-swatch-name">Gunmetal</p>
+                    <p class="cw-swatch-hex">HEX = 006FFF</p>
+                </div>
+            </div>
+
+            <div class="cw-image-full fade-in-up" style="position: relative;">
+                <div class="cw-image-placeholder" style="min-height: 500px; position: relative;">
+                    <img src="img/catchwisp-content-app-card.png" alt="Catchwisp app store card" loading="lazy"
+                        onerror="this.parentElement.textContent='img/catchwisp-content-app-card.png'">
+                    <div class="cw-app-card light" style="right: 24px; bottom: 24px;">
+                        <div class="cw-app-card-icon">
+                            <img src="img/catchwisp-app-icon-glyph2.svg" alt=""
+                                onerror="this.style.display='none'">
+                        </div>
+                        <div style="flex: 1;">
+                            <p class="cw-app-card-title">CATCHWISP</p>
+                            <p class="cw-app-card-sub">App de organización</p>
+                        </div>
+                        <span class="cw-app-card-btn">Obtener</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Decisions -->
+    <section class="section bg-white" data-navbar-dark="true"
+        style="padding-top: var(--spacing-2xl); padding-bottom: var(--spacing-2xl);">
+        <div class="container">
+            <div class="fade-in-up">
+                <p class="cw-overline">EL PRODUCTO</p>
+                <div class="cw-grid-2">
+                    <h2 class="cw-heading2">Tres decisiones que definieron la interfaz</h2>
+                    <div class="cw-features">
+                        <div class="cw-feature-item">
+                            <p class="cw-feature-title">El campo de entrada siempre visible</p>
+                            <p class="cw-body">No hay botón de "nueva nota". El input está fijo, siempre en foco
+                                al abrir. Abrir la app y escribir es la misma acción.</p>
+                        </div>
+                        <div class="cw-feature-item">
+                            <p class="cw-feature-title">Las dos tabs, no un selector</p>
+                            <p class="cw-body">Consideré un menú desplegable para elegir lista. Lo descarté:
+                                agregaba un paso a la acción crítica. Con dos tabs, cambiar de lista es un toque
+                                y el estado es visible sin abrir nada.</p>
+                        </div>
+                        <div class="cw-feature-item">
+                            <p class="cw-feature-title">Estados vacíos que no venden nada</p>
+                            <p class="cw-body">El estado vacío no tiene ilustración ni onboarding. Solo una línea
+                                que dice qué va ahí. Si la app promete velocidad, la primera pantalla no puede
+                                pedir que leas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design System -->
+    <section class="section bg-white" data-navbar-dark="true"
+        style="padding-top: var(--spacing-2xl); padding-bottom: var(--spacing-2xl);">
+        <div class="container">
+            <div class="fade-in-up" style="margin-bottom: var(--spacing-xl);">
+                <p class="cw-overline">Sistema Visual &amp; UI/UX</p>
+                <div class="cw-grid-2">
+                    <h2 class="cw-heading2">Un sistema chico, pero completo</h2>
+                    <p class="cw-body">Antes de diseñar pantallas armé la base. Es un producto de una persona,
+                        así que el sistema tenía que ser lo suficientemente pequeño para mantenerlo solo, y lo
+                        suficientemente estricto para que las decisiones no se repitieran cada vez.</p>
+                </div>
+            </div>
+            <div class="cw-screens-container fade-in-up">
+                <img src="img/catchwisp-screens.png" alt="Catchwisp — Pantallas del sistema" loading="lazy"
+                    onerror="this.parentElement.innerHTML='<div class=&quot;cw-image-placeholder&quot;>img/catchwisp-screens.png</div>'">
+            </div>
+        </div>
+    </section>
+
+    <!-- Handoff -->
+    <section class="section bg-white" data-navbar-dark="true"
+        style="padding-top: var(--spacing-2xl); padding-bottom: var(--spacing-2xl);">
+        <div class="container">
+            <div class="cw-grid-2 fade-in-up">
+                <div>
+                    <p class="cw-overline">DE DISEÑO A PRODUCCIÓN</p>
+                    <h2 class="cw-heading2 mb-32">Diseñado y enviado a producción por una persona</h2>
+                    <p class="cw-body mb-32">Los tokens del sistema de diseño se implementaron como configuración
+                        de Tailwind, así que el archivo de Figma y el código comparten la misma escala. No hay
+                        traducción manual entre diseño y desarrollo, y por lo tanto no hay deriva entre ambos.
+                        <br><br>
+                        El multiidioma se resolvió antes del primer commit de UI. Meterlo después habría
+                        significado tocar cada componente.</p>
+                    <ul class="cw-list">
+                        <li>Vite + React + Tailwind</li>
+                        <li>React Router para la navegación</li>
+                        <li>i18n con soporte español e inglés desde el primer día</li>
+                        <li>Persistencia local con localStorage</li>
+                        <li>Deploy continuo en Vercel conectado a GitHub</li>
+                    </ul>
+                </div>
+                <div class="cw-image-placeholder" style="min-height: 600px; position: relative;">
+                    <img src="img/catchwisp-content-handoff.png" alt="Catchwisp — Handoff" loading="lazy"
+                        onerror="this.parentElement.textContent='img/catchwisp-content-handoff.png'">
+                    <div class="cw-app-card" style="left: 16px; right: 16px; bottom: 16px;">
+                        <div class="cw-app-card-icon">
+                            <img src="img/catchwisp-app-icon-glyph3.svg" alt=""
+                                onerror="this.style.display='none'">
+                        </div>
+                        <div style="flex: 1;">
+                            <p class="cw-app-card-title">Llamar a cliente</p>
+                            <p class="cw-app-card-sub">En 5 minutos</p>
+                        </div>
+                        <span class="cw-app-card-sub">ahora</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-grid">
+                <div class="cta-card cta-left slide-in-left">
+                    <div class="cta-content">
+                        <h2 class="cta-title">Mi trabajo</h2>
+                        <p class="cta-subtitle">Explora lo que hago</p>
+                    </div>
+                    <a href="index.html#portfolio-section" class="card-arrow">
+                        <svg width="45" height="45" fill="none" viewBox="0 0 45 45" style="border-radius: 8px;">
+                            <rect fill="white" height="45" width="45" />
+                            <g transform="translate(15.5, 16.5)">
+                                <path d="M1 11L6 6L1 1" stroke="var(--brand-primary)" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M8 11L13 6L8 1" stroke="var(--brand-primary)" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </g>
+                        </svg>
+                    </a>
+                </div>
+                <div class="cta-card cta-right slide-in-right">
+                    <div class="cta-content">
+                        <h2 class="cta-title cta-title-dark">Si aún tienes dudas</h2>
+                        <p class="cta-subtitle cta-subtitle-blue">Comparte tus dudas</p>
+                    </div>
+                    <a href="contact.html" class="card-arrow">
+                        <svg width="45" height="45" fill="none" viewBox="0 0 45 45" style="border-radius: 8px;">
+                            <rect fill="var(--brand-primary)" height="45" width="45" />
+                            <g transform="translate(15.5, 16.5)">
+                                <path d="M1 11L6 6L1 1" stroke="white" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M8 11L13 6L8 1" stroke="white" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </g>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <a href="/"><img src="img/TypeSeba_Logo.png" loading="lazy" alt="TypeSeba"></a>
+                </div>
+
+                <div class="footer-links">
+                    <a href="index.html#services-section">Servicios</a>
+                    <a href="index.html#portfolio-section">Proyectos</a>
+                    <a href="contact.html">Contacto</a>
+                </div>
+
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/type_seba/" aria-label="Instagram"><svg width="24" height="24"
+                            fill="white" viewBox="0 0 24 24">
+                            <path
+                                d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z" />
+                        </svg></a>
+                </div>
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-bottom">
+                <p>© 2026 TypeSeba. Todos los derechos reservados.</p>
+                <a href="privacy.html">Política de Privacidad</a>
+                <a href="terms.html">Términos de Servicio</a>
+                <a href="cookies.html">Política de Cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/lenis@latest/dist/lenis.min.js" defer></script>
+    <script src="script.js" defer></script>
+</body>
+
+</html>
