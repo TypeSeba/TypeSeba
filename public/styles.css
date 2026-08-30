@@ -874,8 +874,7 @@ button,
 .portfolio-image-01,
 .portfolio-image-02,
 .portfolio-image-03,
-.portfolio-image-04,
-.portfolio-image-05 {
+.portfolio-image-04 {
     position: absolute;
     inset: 0;
     background-size: cover;
@@ -897,11 +896,6 @@ button,
 
 .portfolio-image-04 {
     background-image: url('img/portfolio-aura-preview.webp');
-}
-
-.portfolio-image-05 {
-    background-image: url('img/portfolio-catchwisp-preview.webp');
-    background-color: #fb3321;
 }
 
 .portfolio-card:hover [class^="portfolio-image"] {
