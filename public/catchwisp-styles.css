@@ -1,58 +1,5 @@
 /* Custom styles for Catchwisp portfolio page */
 
-.cw-hero {
-    height: 472px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.cw-hero-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background: #0f3a4d;
-}
-
-.cw-hero-bg::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.55) 100%);
-}
-
-.cw-hero-bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.cw-hero-content {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    color: var(--white);
-    padding: 0 var(--container-padding);
-}
-
-.cw-hero-title {
-    font-family: var(--font-display);
-    font-size: var(--font-size-h1);
-    font-weight: 700;
-    text-transform: uppercase;
-    line-height: 1.2;
-    margin-bottom: var(--spacing-md);
-}
-
-.cw-hero-subtitle {
-    font-family: var(--font-display);
-    font-size: var(--body-base);
-    font-weight: 500;
-}
-
 .bg-white {
     background-color: var(--white);
 }
@@ -266,10 +213,6 @@ ul.cw-list li {
 
 /* --- Mobile Responsiveness --- */
 @media (max-width: 991px) {
-    .cw-hero-title {
-        font-size: 56px;
-    }
-
     .cw-heading2 {
         font-size: 40px;
     }
