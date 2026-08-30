@@ -14,7 +14,14 @@
     position: absolute;
     inset: 0;
     z-index: 0;
-    background: radial-gradient(circle at 50% 30%, #ff5a3c 0%, #fb3321 35%, #1a0a06 100%);
+    background: #0f3a4d;
+}
+
+.cw-hero-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.55) 100%);
 }
 
 .cw-hero-bg img {
@@ -120,30 +127,6 @@
     display: block;
 }
 
-/* Placeholder treatment for images pending export from Figma */
-.cw-image-placeholder {
-    width: 100%;
-    min-height: 420px;
-    border-radius: var(--radius-xl);
-    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--grey-600);
-    font-family: var(--font-mono);
-    font-size: 13px;
-    text-align: center;
-    padding: var(--spacing-md);
-    overflow: hidden;
-}
-
-.cw-image-placeholder img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
 .cw-features {
     display: flex;
     flex-direction: column;
@@ -220,26 +203,6 @@
     object-fit: cover;
 }
 
-.cw-brand-app-icon {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 39%;
-    aspect-ratio: 1;
-    background: var(--orange-500, #fb3321);
-    border-radius: 22%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.cw-brand-app-icon img {
-    width: 67%;
-    height: 67%;
-    object-fit: contain;
-}
-
 /* Color swatches */
 .cw-swatch-row {
     display: flex;
@@ -269,81 +232,22 @@
     font-size: var(--subheading);
 }
 
-/* App card overlay used on Branding + Handoff sections */
-.cw-app-card {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    background: rgba(0, 0, 0, 0.25);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-sm) var(--spacing-md);
-    color: var(--white);
-    backdrop-filter: blur(6px);
-}
-
-.cw-app-card.light {
-    background: var(--white);
-    color: var(--text-title);
-}
-
-.cw-app-card-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 20px;
-    background: var(--orange-500, #fb3321);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.cw-app-card-icon img {
-    width: 60%;
-    height: 60%;
-    object-fit: contain;
-}
-
-.cw-app-card-title {
-    font-family: var(--font-ui);
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 1.1;
-}
-
-.cw-app-card-sub {
-    font-family: var(--font-ui);
-    font-size: 14px;
-    opacity: 0.75;
-}
-
-.cw-app-card-btn {
-    background: #3279f7;
-    color: var(--white);
-    font-family: var(--font-ui);
-    font-weight: 700;
-    font-size: 13px;
-    padding: 8px 14px;
-    border-radius: 16px;
-    white-space: nowrap;
-}
-
-/* Design system screens image */
-.cw-screens-container {
+/* Design system screens */
+.cw-screens-row {
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    align-items: flex-start;
+    gap: var(--spacing-xl);
+    flex-wrap: wrap;
 }
 
-.cw-screens-container img {
-    width: 100%;
+.cw-screens-row img {
+    width: 320px;
+    max-width: 100%;
     height: auto;
-}
-
-.cw-screens-caption {
-    text-align: center;
+    border-radius: var(--radius-lg);
+    box-shadow: 20px 22px 40px rgba(0, 0, 0, 0.15);
 }
 
 ul.cw-list {
@@ -392,10 +296,8 @@ ul.cw-list li {
         min-height: 160px;
     }
 
-    .cw-app-card {
-        position: static;
-        margin-top: var(--spacing-sm);
-        width: 100%;
+    .cw-screens-row img {
+        width: 260px;
     }
 
     .section[style] {

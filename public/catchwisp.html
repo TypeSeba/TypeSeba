@@ -26,7 +26,9 @@
 <body>
     <!-- Hero Section with Navbar -->
     <section class="cw-hero">
-        <div class="cw-hero-bg"></div>
+        <div class="cw-hero-bg">
+            <img src="img/catchwisp-hero.jpg" alt="Catchwisp — Catch it before it's gone" loading="eager">
+        </div>
 
         <!-- Navbar -->
         <div id="navbar-placeholder"></div>
@@ -79,9 +81,8 @@
                         la idea.</p>
                 </div>
             </div>
-            <div class="cw-image-placeholder fade-in-up">
-                <img src="img/catchwisp-content-problem.png" alt="Catchwisp — El problema" loading="lazy"
-                    onerror="this.parentElement.textContent='img/catchwisp-content-problem.png'">
+            <div class="cw-image-full fade-in-up">
+                <img src="img/catchwisp-problem.png" alt="Catchwisp — El problema" loading="lazy">
             </div>
         </div>
     </section>
@@ -108,9 +109,9 @@
                         listas se vuelvan ruido.
                     </p>
                 </div>
-                <div class="cw-image-placeholder" style="min-height: 729px;">
-                    <img src="img/catchwisp-content-hypothesis.png" alt="Catchwisp — La hipótesis" loading="lazy"
-                        onerror="this.parentElement.textContent='img/catchwisp-content-hypothesis.png'">
+                <div class="cw-image-full" style="height: 100%;">
+                    <img src="img/catchwisp-hypothesis.png" alt="Catchwisp — La hipótesis" loading="lazy"
+                        style="height: 100%; min-height: 500px;">
                 </div>
             </div>
         </div>
@@ -122,12 +123,8 @@
         <div class="container">
             <div class="cw-grid-2 fade-in-up" style="margin-bottom: var(--spacing-xl);">
                 <div class="cw-brand-icon-wrap">
-                    <img class="cw-bg-photo" src="img/catchwisp-content-brand-icon.png" alt="Catchwisp brand"
-                        loading="lazy" onerror="this.style.display='none'">
-                    <div class="cw-brand-app-icon">
-                        <img src="img/catchwisp-app-icon-glyph.svg" alt="" loading="lazy"
-                            onerror="this.style.display='none'">
-                    </div>
+                    <img class="cw-bg-photo" src="img/catchwisp-icon-homescreen.jpeg"
+                        alt="Ícono de Catchwisp en el homescreen" loading="lazy">
                 </div>
                 <div>
                     <p class="cw-overline">brand</p>
@@ -141,18 +138,9 @@
                 </div>
             </div>
 
-            <div class="cw-image-full fade-in-up" style="margin-bottom: var(--spacing-xl);">
-                <div class="cw-image-placeholder">
-                    <img src="img/catchwisp-content-brand-wide.png" alt="Catchwisp wordmark" loading="lazy"
-                        onerror="this.parentElement.textContent='img/catchwisp-content-brand-wide.png'">
-                </div>
-            </div>
-
-            <div class="cw-image-full fade-in-up" style="margin-bottom: var(--spacing-xl);">
-                <div class="cw-image-placeholder" style="min-height: 320px;">
-                    <img src="img/catchwisp-brand-swatch.png" alt="Catchwisp brand swatch" loading="lazy"
-                        onerror="this.parentElement.textContent='img/catchwisp-brand-swatch.png'">
-                </div>
+            <div class="cw-image-full fade-in-up" style="margin-bottom: var(--spacing-xl); background: #171515;">
+                <img src="img/catchwisp-wordmark.png" alt="Construcción del wordmark Catchwisp" loading="lazy"
+                    style="object-fit: contain; max-height: none;">
             </div>
 
             <div class="cw-swatch-row fade-in-up" style="margin-bottom: var(--spacing-xl);">
@@ -178,22 +166,8 @@
                 </div>
             </div>
 
-            <div class="cw-image-full fade-in-up" style="position: relative;">
-                <div class="cw-image-placeholder" style="min-height: 500px; position: relative;">
-                    <img src="img/catchwisp-content-app-card.png" alt="Catchwisp app store card" loading="lazy"
-                        onerror="this.parentElement.textContent='img/catchwisp-content-app-card.png'">
-                    <div class="cw-app-card light" style="right: 24px; bottom: 24px;">
-                        <div class="cw-app-card-icon">
-                            <img src="img/catchwisp-app-icon-glyph2.svg" alt=""
-                                onerror="this.style.display='none'">
-                        </div>
-                        <div style="flex: 1;">
-                            <p class="cw-app-card-title">CATCHWISP</p>
-                            <p class="cw-app-card-sub">App de organización</p>
-                        </div>
-                        <span class="cw-app-card-btn">Obtener</span>
-                    </div>
-                </div>
+            <div class="cw-image-full fade-in-up" style="position: relative; min-height: 500px;">
+                <img src="img/catchwisp-appcard.png" alt="Catchwisp — la app en uso" loading="lazy">
             </div>
         </div>
     </section>
@@ -243,9 +217,13 @@
                         suficientemente estricto para que las decisiones no se repitieran cada vez.</p>
                 </div>
             </div>
-            <div class="cw-screens-container fade-in-up">
-                <img src="img/catchwisp-screens.png" alt="Catchwisp — Pantallas del sistema" loading="lazy"
-                    onerror="this.parentElement.innerHTML='<div class=&quot;cw-image-placeholder&quot;>img/catchwisp-screens.png</div>'">
+            <div class="cw-screens-row fade-in-up">
+                <img src="img/catchwisp-screen-hacer.png" alt="Catchwisp — tab Hacer con items" loading="lazy">
+                <img src="img/catchwisp-screen-empty.png" alt="Catchwisp — estado vacío" loading="lazy">
+            </div>
+            <div class="cw-image-full fade-in-up" style="margin-top: var(--spacing-xl);">
+                <img src="img/catchwisp-typography.png" alt="Catchwisp — tipografía Inter" loading="lazy"
+                    style="object-fit: contain; max-height: none;">
             </div>
         </div>
     </section>
@@ -272,20 +250,9 @@
                         <li>Deploy continuo en Vercel conectado a GitHub</li>
                     </ul>
                 </div>
-                <div class="cw-image-placeholder" style="min-height: 600px; position: relative;">
-                    <img src="img/catchwisp-content-handoff.png" alt="Catchwisp — Handoff" loading="lazy"
-                        onerror="this.parentElement.textContent='img/catchwisp-content-handoff.png'">
-                    <div class="cw-app-card" style="left: 16px; right: 16px; bottom: 16px;">
-                        <div class="cw-app-card-icon">
-                            <img src="img/catchwisp-app-icon-glyph3.svg" alt=""
-                                onerror="this.style.display='none'">
-                        </div>
-                        <div style="flex: 1;">
-                            <p class="cw-app-card-title">Llamar a cliente</p>
-                            <p class="cw-app-card-sub">En 5 minutos</p>
-                        </div>
-                        <span class="cw-app-card-sub">ahora</span>
-                    </div>
+                <div class="cw-image-full" style="height: 100%;">
+                    <img src="img/catchwisp-handoff.png" alt="Catchwisp — de diseño a producción" loading="lazy"
+                        style="height: 100%; min-height: 500px; object-fit: contain; background: var(--gray-100, #f5f5f5);">
                 </div>
             </div>
         </div>
