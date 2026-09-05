@@ -122,12 +122,29 @@
     text-align: right;
 }
 
+.cw-meta-row a {
+    color: var(--brand-primary, #e8320c);
+    text-align: right;
+    text-decoration: none;
+    transition: opacity 0.2s ease, text-decoration 0.2s ease;
+}
+
+.cw-meta-row a:hover {
+    opacity: 0.85;
+    text-decoration: underline;
+}
+
 @media (max-width: 900px) {
     .cw-meta-row {
         font-size: 16px;
         flex-direction: column;
         align-items: flex-start;
         gap: 4px;
+    }
+
+    .cw-meta-row span:last-child,
+    .cw-meta-row a {
+        text-align: left;
     }
 }
 
